@@ -37,12 +37,16 @@
 \usepackage[T1]{fontenc} % Required for accented characters
 \linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
 \usepackage{etoolbox}
+\newcommand{\nlp}{\textsc{nlp}}
+\newcommand{\cn}{\textsc{cn}}
 \newcommand{\aab}{\textsc{aa}}
 \newcommand{\aai}{\textsc{Aa}}
-\newcommand{\ontologiaa}{Ontologi\textsc{aa}}
+\newcommand{\ontologiaa}{\textsc{o}ntologi\textsc{aa}}
 \newcommand{\owl}{{\sc owl}}
 \newcommand{\rdfi}{{\sc Rdf}}
 \newcommand{\rdf}{{\sc rdf}}
+\newcommand{\gsd}{\textsc{gsd}}
+\newcommand{\ui}{\textsc{ui}}
 %\newcommand{\lmb}{\url{lab\textsc{M}acambira.sf.net}}
 \newcommand{\lm}{lab\textsc{M}acambira.sf.net}
 %\newcommand{\lm}{\url{labMacambira.sf.net}}
@@ -126,25 +130,57 @@ a collective and natural focus\\ on self-transparency} % Subtitle
 
 \section{\aai\ start}
 %\addcontentsline{toc}{section}{\aai\ start}
-The \aab\ (Algorithmic Autorregulation) is a self-transparency mechanism for sharing processes, proving dedication, and enhance personal of collective self-transparency. Purposes for \aab\ usage are numerous: enable automated and fair compensation for dedications, ease co-working, introduce newcommers, and keeping public historical logs of activities, etc. Indeed, other systems have been designed for such a task (see Section~\ref{sec:rel}). A brief characterization of \aab\ is:
+The Algorithmic Autorregulation (\aab) is a self-transparency mechanism for sharing processes, proving dedication, and enhance personal of collective self-transparency. Purposes for \aab\ usage are numerous: enable automated and fair compensation for dedications, ease co-working, introduce newcommers, and keeping public historical logs of activities, etc. Indeed, other systems have been designed for such a task (see Section~\ref{sec:rel}). A brief characterization of \aab\ is:
 \begin{itemize}
     \item The collective origin, purpose and upkeep. This is a free-culture trait, present within many software, and leads to open software and data as described in Section ~\ref{sec:sdata}.
     \item Voluntary logging of messages about ongoing work.
-    \item Periodicity
+    \item Aimed at coordinating distributed team work through individual merit.
+    \item More a practice than a software: \aab\ presents variations on the software support and message composition. Often present are screencasts, peer validation and periodic messaging.
 \end{itemize}
 
-\subsection{Historical note}
-\aai\ was conceived by \lm, Cleodon Silva, 7th June, AA
- In use since July 7th, 2011, it gathers thousands of messages, tenths of users and hundreds of processes. 
+Transparency in this context should be understood as usual organization or State transparency is: a public account of activities~\cite{stso}; not directly as transparency in self-knowledge, as is the case in some philosophical and political contexts~\cite{stph}. One should reach~\cite{paaper} for a noteworthy overview of \aab\ as a Global Software Development (\gsd).
+
  \subsection{Related work}\label{sec:rel}
 %\addcontentsline{toc}{subsection}{Related work}
+ Authors know of no \emph{civil society transparency} platform. There is a number of transparency initiatives for governments~\cite{govTr}, for religious parties~\cite{relTr} and for private institutions~\cite{priTr}. Data analysis methods are derived from Natural Language Processing (\nlp) and Complex Networks (\cn) fields, constituting a hybrid framework of classical~\cite{cla1,cla2} and novel~\cite{nov1,nov2} approaches.
+
+\subsection{Historical note}
+7th June, 2013, Cleodon Silva~\cite{cleodon} died by heart failure. In his memory, the \lm\ group was born (Macambira was one of this pseudonyms). The \aab\ was conceived as the ``cardiac pulse'' of the group and is in constant usage since July, 2011. It gathers thousands of messages, tenths of users and hundreds of processes. \aai\ messages presents contributions, such as  commits to official repositories of Evince, Firefox, OpenOffice, Puredata and other software~\cite{paaper}. Also, a number of other activities were registered: new software ellaboration and coding, writing of articles, wikis and etherpads; articulation of civil society, academic and State instances; studies and reviews. Even so, \aab\ is highly biased to software development, as can be observed in Sections~\ref{sec:stats} and~\ref{sec:res}.
 
  \section{\aai\ Systems and data}\label{sec:sdata}
 %\addcontentsline{toc}{section}{Systems and data}
-os diferentes aas, diferentes sofstwares e bds.
-o que os unifica.
+There are different software support for \aab. Also, distinct use methods are incident. This section exposes this diversity and their integration, as linked data, both within \aab\ variants and within participatory instances.
+
 \subsection{Software support}
+There are mainly two software pieces written to support \aab\ activity, each a server and client suite (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}). Automated conversational agents (software [ro]bots) were used as User Interface (\ui), with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia}) and a initiative to make \aab\ available in all chat networks (see Section~\ref{sec:ubi}).
+
+\subsubsection{\aab\ php casca e cliente}\label{sec:aaFirst}
+Although deprecated in favor of \aab\ 01, this first \aab\ software presents the most numerous set of functionalities.
+\subsubsection{aa 01}\label{sec:aa01}
+\subsubsection{Lalenia interface}\label{sec:lalenia}
+\subsubsection{Ubiquitous \aab}\label{sec:ubi}
+
 %\addcontentsline{toc}{subsection}{Software support}
+\begin{table}[!h]
+  \centering
+  \caption{All considered \aab\ versions and their databases.}
+  \begin{tabular}{|l|l|l|l|}\hline
+{\bf version name} & {\bf main language} & {\bf user interface} & {\bf database} \\\hline\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+& & & \\\hline
+  \end{tabular}
+  \label{ospRestr}
+\end{table}
 
 \subsection{Systematic use proposals}
 %\addcontentsline{toc}{subsection}{Systematic use proposals}
@@ -159,10 +195,10 @@ o que os unifica.
 %\addcontentsline{toc}{subsection}{Linkage to other participatory data}
 
 
-\section{Data statistics}
+\section{Statistics}\label{sec:stats}
 %\addcontentsline{toc}{section}{Data statistics}
 
-\section{Results}
+\section{Results}\label{sec:res}
 
 \section{Conclusions}
 \subsection{Further work}
@@ -194,7 +230,8 @@ o que os unifica.
 %----------------------------------------------------------------------------------------
 
 %\bibliographystyle{unsrt}
-\bibliographystyle{plain}
+%\bibliographystyle{plain}
+\bibliographystyle{ieeetr}
 \bibliography{ensaio}
 
 %----------------------------------------------------------------------------------------
