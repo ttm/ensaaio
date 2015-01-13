@@ -1,0 +1,202 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+\usepackage{hyperref}
+\usepackage[portuguese,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+
+\usepackage{color} % for the notes
+\usepackage{xcolor}
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{tocloft}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+\usepackage{etoolbox}
+\newcommand{\aab}{\textsc{aa}}
+\newcommand{\aai}{\textsc{Aa}}
+\newcommand{\ontologiaa}{Ontologi\textsc{aa}}
+\newcommand{\owl}{{\sc owl}}
+\newcommand{\rdfi}{{\sc Rdf}}
+\newcommand{\rdf}{{\sc rdf}}
+%\newcommand{\lmb}{\url{lab\textsc{M}acambira.sf.net}}
+\newcommand{\lm}{lab\textsc{M}acambira.sf.net}
+%\newcommand{\lm}{\url{labMacambira.sf.net}}
+
+
+
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\hypersetup{
+        colorlinks,
+            linkcolor={red!50!black},
+                citecolor={blue!50!black},
+                    urlcolor={blue!80!black}
+                }
+
+
+\pretocmd{\chapter}{\addtocontents{toc}{\protect\addvspace{5\p@}}}{}{}
+\pretocmd{\section}{\addtocontents{toc}{\protect\vspace{-4mm}}}{}{}
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%   TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{The Algorithmic-Autoregulation essay}\\ % Title
+%a natural collective focus\\on the collective being} % Subtitle
+a collective and natural focus\\ on self-transparency} % Subtitle
+
+\author{\textsc{Renato Fabbri} % Author
+\\{\textit{IFSC/USP, Participa.br/SG-PR, labMacambira.sf.net}}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%----------------------------------------------------------------------------------------
+%   ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+
+\begin{abstract}
+    There are numerous pursues for a lightweight and systematic account of what is done by a group and containing individuals. The \aab\ (Algorithmic-Autoregulation) is a special case, in which a technical community embraced the challenge of registering their own dedication for sharing processes, self-transparency enhancements, and prove dedication. \aai\ is used since June/2011 by dozens of users, with the support of different software gadgets and for distinct tasks. Intermittence and activity concentration of users activity follows expected natural properties. Social participation and ontological understandings of \aab\ eases comparative analysis and furthers integration.
+\end{abstract}
+
+{
+\selectlanguage{portuguese}
+\begin{abstract}
+
+\end{abstract}
+}
+
+\hspace*{3,6mm}\textit{Keywords:} distributed development, floss, social participation, OWL, statistics, anthropological physics % Keywords
+
+%\vspace{30pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+%   ESSAY BODY
+%----------------------------------------------------------------------------------------
+\newpage
+\tableofcontents
+
+
+\section{\aai\ start}
+%\addcontentsline{toc}{section}{\aai\ start}
+The \aab\ (Algorithmic Autorregulation) is a self-transparency mechanism for sharing processes, proving dedication, and enhance personal of collective self-transparency. Purposes for \aab\ usage are numerous: enable automated and fair compensation for dedications, ease co-working, introduce newcommers, and keeping public historical logs of activities, etc. Indeed, other systems have been designed for such a task (see Section~\ref{sec:rel}). A brief characterization of \aab\ is:
+\begin{itemize}
+    \item The collective origin, purpose and upkeep. This is a free-culture trait, present within many software, and leads to open software and data as described in Section ~\ref{sec:sdata}.
+    \item Voluntary logging of messages about ongoing work.
+    \item Periodicity
+\end{itemize}
+
+\subsection{Historical note}
+\aai\ was conceived by \lm, Cleodon Silva, 7th June, AA
+ In use since July 7th, 2011, it gathers thousands of messages, tenths of users and hundreds of processes. 
+ \subsection{Related work}\label{sec:rel}
+%\addcontentsline{toc}{subsection}{Related work}
+
+ \section{\aai\ Systems and data}\label{sec:sdata}
+%\addcontentsline{toc}{section}{Systems and data}
+os diferentes aas, diferentes sofstwares e bds.
+o que os unifica.
+\subsection{Software support}
+%\addcontentsline{toc}{subsection}{Software support}
+
+\subsection{Systematic use proposals}
+%\addcontentsline{toc}{subsection}{Systematic use proposals}
+
+\subsection{The \ontologiaa\ \owl\ ontology}
+%\addcontentsline{toc}{subsection}{The \ontologiaa\ \owl\ ontology}
+
+\subsection{\rdfi\ data}
+%\addcontentsline{toc}{subsection}{\rdfi\ data}
+
+\subsection{Linkage to other participatory data}
+%\addcontentsline{toc}{subsection}{Linkage to other participatory data}
+
+
+\section{Data statistics}
+%\addcontentsline{toc}{section}{Data statistics}
+
+\section{Results}
+
+\section{Conclusions}
+\subsection{Further work}
+%\addcontentsline{toc}{subsection}{\ontologiaa: the \aab\ ontology}
+%\begin{wrapfigure}{l}{0.4\textwidth} % Inline image example
+%\begin{center}
+%\includegraphics[width=0.38\textwidth]{telao1.png}
+%\end{center}
+%\caption{\small Telão para streaming de estruturas sociais, usado no \#arenaNETmundial, \#ocupaGOV e outras ocasiões. Tela com rede de retweets e relacionamento via hashtag e vocabulário. Atualizada a cada 10 segundos com os relacionamentos implicados pelos dos tweets mais recentes.}\label{fig:telao}
+%\end{wrapfigure}
+
+%\begin{figure}[H]
+%  \centering
+%    \includegraphics[width=.7\textwidth]{telao2.png}
+%  \caption{\small Telão para streaming de estruturas sociais, usado no \#arenaNETmundial, \#ocupaGOV e outras ocasiões. Tela com relacionamentos de hashtags e vocabulário. Atualizada a cada 10 segundos com conteúdo dos tweets mais recentes.}\label{fig:telao2}
+%\end{figure}
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%   BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{unsrt}
+\bibliographystyle{plain}
+\bibliography{ensaio}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
