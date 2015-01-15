@@ -37,7 +37,17 @@
 \usepackage[T1]{fontenc} % Required for accented characters
 \linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
 \usepackage{etoolbox}
+\newcommand{\firefox}{\textsc{f}irefox}
+\newcommand{\floss}{\textsc{floss}}
+\newcommand{\openoffice}{\textsc{o}pen\textsc{o}ffice}
+\newcommand{\puredata}{\textsc{p}uredata}
+\newcommand{\wiki}{\textsc{w}iki}
+\newcommand{\etherpad}{\textsc{e}therpad}
+\newcommand{\irc}{\textsc{irc}}
+\newcommand{\httpb}{\textsc{http}}
+\newcommand{\html}{\textsc{html}}
 \newcommand{\nlp}{\textsc{nlp}}
+\newcommand{\sectionb}{\textsc{s}ection}
 \newcommand{\cn}{\textsc{cn}}
 \newcommand{\aab}{\textsc{aa}}
 \newcommand{\aai}{\textsc{Aa}}
@@ -110,7 +120,7 @@ a collective and natural focus\\ on self-transparency} % Subtitle
 
 
 \begin{abstract}
-    There are numerous pursues for a lightweight and systematic account of what is done by a group and containing individuals. The \aab\ (Algorithmic-Autoregulation) is a special case, in which a technical community embraced the challenge of registering their own dedication for sharing processes, self-transparency enhancements, and prove dedication. \aai\ is used since June/2011 by dozens of users, with the support of different software gadgets and for distinct tasks. Intermittence and activity concentration of users activity follows expected natural properties. Social participation and ontological understandings of \aab\ eases comparative analysis and furthers integration.
+    There are numerous pursues for a lightweight and systematic account of what is done by a group and containing individuals. The Algorithmic-Autoregulation (\aab) is a special case, in which a technical community embraced the challenge of registering their own dedication for sharing processes, self-transparency enhancements, and prove dedication. \aai\ is used since June/2011 by dozens of \floss\ and social developers, with the support of different \aab\ software gadgets and for distinct tasks. Intermittence and activity concentration of users activity follows expected natural properties. Social participation and ontological understandings of \aab\ eases comparative analysis and furthers integration.
 \end{abstract}
 
 {
@@ -120,7 +130,7 @@ a collective and natural focus\\ on self-transparency} % Subtitle
 \end{abstract}
 }
 
-\hspace*{3,6mm}\textit{Keywords:} distributed development, floss, social participation, OWL, statistics, anthropological physics % Keywords
+\hspace*{3,6mm}\textit{Keywords:} distributed development, \floss, social participation, \owl, statistics, anthropological physics % Keywords
 
 %\vspace{30pt} % Some vertical space between the abstract and first section
 
@@ -133,12 +143,12 @@ a collective and natural focus\\ on self-transparency} % Subtitle
 
 \section{\aai\ start}\label{sec:start}
 %\addcontentsline{toc}{section}{\aai\ start}
-The Algorithmic Autorregulation (\aab) is a self-transparency mechanism for sharing processes, proving dedication, and enhance personal of collective self-transparency. Purposes for \aab\ usage are numerous: enable automated and fair compensation for dedications, ease co-working, introduce newcommers, and keeping public historical logs of activities, etc. Indeed, other systems have been designed for such a task (see Section~\ref{sec:rel}). A brief characterization of \aab\ is:
+The {\tt A}lgorithmic {\tt A}utoregulation (\aab) is a self-transparency mechanism for sharing processes, proving dedication, and enhance personal or collective self-transparency. Purposes for \aab\ usage are numerous: enable automated and fair compensation for dedications, ease co-working, introduce newcomers, keeping public historical logs of activities, etc. Indeed, other systems have been designed for such a task (see Section~\ref{sec:rel}). A brief characterization of \aab\ is:
 \begin{itemize}
     \item The collective origin, purpose and upkeep. This is a free-culture trait, present within many software, and leads to open software and data as described in Section ~\ref{sec:sdata}.
     \item Voluntary logging of messages about ongoing work.
-    \item Aimed at coordinating distributed team work through individual merit.
-    \item More a practice than a software: \aab\ presents variations on the software support and message composition. Often present are screencasts, peer validation and periodic messaging.
+    \item Enables coordinating distributed team work through individual merit.
+    \item More a practice than a software: \aab\ presents variations on the software support and message composition. Often present features are screencasts, peer validation and periodic messaging.
 \end{itemize}
 
 Transparency in this context should be understood as usual organization or State transparency is: a public account of activities~\cite{stso}; not directly as transparency in self-knowledge, as is the case in some philosophical and political contexts~\cite{stph}. One should reach~\cite{paaper} for a noteworthy overview of \aab\ as a Global Software Development (\gsd).
@@ -148,32 +158,52 @@ Transparency in this context should be understood as usual organization or State
  Authors know of no \emph{civil society transparency} platform. There is a number of transparency initiatives for governments~\cite{govTr}, for religious parties~\cite{espTr} and for private institutions~\cite{priTr}. Data analysis methods are derived from Natural Language Processing (\nlp) and Complex Networks (\cn) fields, constituting a hybrid framework of classical~\cite{cla1,cla2} and novel~\cite{nov1,nov2} approaches.
 
 \subsection{Historical note}
-7th June, 2013, Cleodon Silva~\cite{cleodon} died by heart failure. In his memory, the \lm\ group was born (Pedro Macambira was one of this pseudonyms). The \aab\ was conceived as the ``cardiac pulse'' of the group and is in constant usage since July, 2011. It gathers thousands of messages, tenths of users and hundreds of processes. \aai\ messages present contributions, such as  commits to official repositories of Evince, Firefox, OpenOffice, Puredata and other software~\cite{paaper}. Also, a number of other activities were registered: new software ellaboration and coding, writing of articles, wikis and etherpads; articulation of civil society, academic and State instances; studies and reviews. Even so, \aab\ is highly biased towards software development, as can be observed in Sections~\ref{sec:stats} and~\ref{sec:res}, and in the \gsd\ article about \aab~\cite{paaper}.
+7th June, 2013, Cleodon Silva~\cite{cleodon} died by heart failure. In his memory, the \lm\ group was born (Pedro Macambira was one of this pseudonyms). The \aab\ was conceived as the ``cardiac pulse'' of the group and is in constant usage since July, 2011. It gathers thousands of messages, tenths of users and hundreds of processes. \aai\ messages present contributions, such as  commits to official repositories of Evince, \firefox, \openoffice, \puredata\ and other software~\cite{paaper}. A number of other activities were registered: new software elaboration and coding, writing of articles, \wiki s and \etherpad s; articulation of civil society, academic and state instances; studies and reviews. Even so, \aab\ is highly biased towards software development, as can be observed in \sectionb s~\ref{sec:stats} and~\ref{sec:res}, and in the \gsd\ article about \aab~\cite{paaper}.
 
- \section{\aai\ Systems and data}\label{sec:sdata}
+\subsection{Essay structure}\label{sec:ess}
+Section~\ref{sec:sp} describes \aab\ uses incident and envisioned.
+Section~\ref{sec:soft} exposes different software written or used for \aab. Section~\ref{sec:data} is dedicated to data. Section~\ref{sec:stats} further develops statistics about \aab\ in terms of vocabulary and networks. Section~\ref{sec:res} states results and \sectionb~\ref{sec:con} a concludes with further works and acknowledgements. Tables and figures are inplace, kept as simple briefings and illustrations. External resources - mainly documents, data and scripts - are referenced for further inspection.
+
+\section{Use practices}\label{sec:sp}
+%\addcontentsline{toc}{subsection}{Systematic use proposals}
+tags, slots, spacing, scattered, etc. Offline
+
+
+
+ \section{Software support}\label{sec:sdata}
 %\addcontentsline{toc}{section}{Systems and data}
  There are different software support for \aab\ (Section~\ref{sec:ss}). Also, distinct use methods are incident (Section~\ref{sec:sp}). This section exposes this diversity and their integration, as linked data, both within \aab\ variants and within participatory instances.
 
-\subsection{Software support}\label{sec:ss}
 There are mainly three software pieces written to support \aab\ activity. Two of them are a server and client suite each (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}). The third is a fancy dashboard. Automated conversational agents (software [ro]bots) were used as alternative User Interfaces (\ui s), with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia}), and an initiative to make \aab\ available in all chat networks (see Section~\ref{sec:ubi}).
 
 All \aab\ software apparatus is contextualized in Table~\ref{tab:aas}.
-\subsubsection{First \aab: server skin and shell client}\label{sec:aaFirst}
+\subsubsection{First \aab: \httpb\ server, \html\ skin and shell client}\label{sec:aaFirst}
 Although deprecated in favor of \aab\ 01, this first \aab\ software presents the most numerous set of functionalities. To understand them,
-one needs to observe core design features:
+one needs to observe core design features of the newborn \aab:
 \begin{itemize}
-    \item
+    \item Evenly spaced messages should be sent by the \aab\ user. The time lapse is called a ``slot'' and the message a ``shout''. A slot might refer to the time lapse and the message, this is context dependent and will be pointed on text if ambiguity occurs.
+    \item Shouts should report the task being tackled and/or a briefing of what was done in the slot.
+    \item Shouts are grouped into ``sessions''. Each session is ideally linked with a short screencast by the user, with a few dozen seconds of explanation about the \aab\ session.
+    \item Each session is sent by email to a random \aab\ user for validation.
 \end{itemize}
+
+Variants of this features were conceived and practiced. Figure~\ref{fig:consult} exposes a diagram shared and referenced by \aab\ users in the first months of \aab\ practice.
 
 Client functionalities are:
 \begin{itemize}
-    \item
+    \item 
 \end{itemize}
 
 Server functionalities are:
 \begin{itemize}
     \item
 \end{itemize}
+
+Core \html\ skin functionalities are:
+\begin{itemize}
+    \item
+\end{itemize}
+
 
 \begin{figure}[!h]
     \centering
@@ -193,30 +223,28 @@ Further information of this and other versions of \aab\ are contextualized in Ta
 %\addcontentsline{toc}{subsection}{Software support}
 \begin{table}[!h]
   \centering
-  \caption{All considered \aab\ versions and their databases.}\label{tab:aas}
-  \begin{tabular}{|l|l|l|l|}\hline
-{\bf version name} & {\bf main language} & {\bf user interface} & {\bf database} \\\hline\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
-& & & \\\hline
+  \caption{All considered \aab\ versions and their databases. References marked with $\dagger$ are not operational anymore.}\label{tab:aas}
+  \begin{tabular}{|l|l|l|l|l|l|}\hline
+      {\bf version name} & {\bf main language} & {\bf user interface} & {\bf database} & {\bf git} & {\bf available at} \\\hline\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
+& & & & & \\\hline
   \end{tabular}
   \label{ospRestr}
 \end{table}
 
-\subsubsection{Messages in the \#labmacambira@Freenode IRC channel log}
+\subsubsection{The \#labmacambira@Freenode \irc\ channel log}
 
-\subsection{Systematic use proposals}\label{sec:sp}
-%\addcontentsline{toc}{subsection}{Systematic use proposals}
-
+\section{Data}\label{sec:data}
 \subsection{The \ontologiaa\ \owl\ ontology}
 %\addcontentsline{toc}{subsection}{The \ontologiaa\ \owl\ ontology}
 
@@ -232,8 +260,10 @@ Further information of this and other versions of \aab\ are contextualized in Ta
 
 \section{Results}\label{sec:res}
 
-\section{Conclusions}
+\section{Conclusions}\label{sec:con}
 \subsection{Further work}
+\subsection{Acknowledgments}
+
 %\addcontentsline{toc}{subsection}{\ontologiaa: the \aab\ ontology}
 %\begin{wrapfigure}{l}{0.4\textwidth} % Inline image example
 %\begin{center}
