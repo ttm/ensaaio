@@ -44,6 +44,8 @@
 \newcommand{\wiki}{\textsc{w}iki}
 \newcommand{\etherpad}{\textsc{e}therpad}
 \newcommand{\irc}{\textsc{irc}}
+\newcommand{\ocd}{\textsc{ocd}}
+\newcommand{\participa}{\textsc{p}articipa.br}
 \newcommand{\httpb}{\textsc{http}}
 \newcommand{\html}{\textsc{html}}
 \newcommand{\nlp}{\textsc{nlp}}
@@ -145,7 +147,7 @@ a collective and natural focus\\ on self-transparency} % Subtitle
 %\addcontentsline{toc}{section}{\aai\ start}
 The {\tt A}lgorithmic {\tt A}utoregulation (\aab) is a self-transparency mechanism for sharing processes, proving dedication, and enhance personal or collective self-transparency. Purposes for \aab\ usage are numerous: enable automated and fair compensation for dedications, ease co-working, introduce newcomers, keeping public historical logs of activities, etc. Indeed, other systems have been designed for such a task (see Section~\ref{sec:rel}). A brief characterization of \aab\ is:
 \begin{itemize}
-    \item The collective origin, purpose and upkeep. This is a free-culture trait, present within many software, and leads to open software and data as described in Section ~\ref{sec:sdata}.
+    \item The collective origin, purpose and upkeep. This is a free-culture trait, present within many software, and leads to open software and data as described in Section ~\ref{sec:sofsup}.
     \item Voluntary logging of messages about ongoing work.
     \item Enables coordinating distributed team work through individual merit.
     \item More a practice than a software: \aab\ presents variations on the software support and message composition. Often present features are screencasts, peer validation and periodic messaging.
@@ -164,22 +166,8 @@ Transparency in this context should be understood as usual organization or State
 Section~\ref{sec:sp} describes \aab\ uses incident and envisioned.
 Section~\ref{sec:soft} exposes different software written or used for \aab. Section~\ref{sec:data} is dedicated to data. Section~\ref{sec:stats} further develops statistics about \aab\ in terms of vocabulary and networks. Section~\ref{sec:res} states results and \sectionb~\ref{sec:con} a concludes with further works and acknowledgements. Tables and figures are inplace, kept as simple briefings and illustrations. External resources - mainly documents, data and scripts - are referenced for further inspection.
 
-\section{Use practices}\label{sec:sp}
-%\addcontentsline{toc}{subsection}{Systematic use proposals}
-tags, slots, spacing, scattered, etc. Offline
-
-
-
- \section{Software support}\label{sec:sdata}
-%\addcontentsline{toc}{section}{Systems and data}
- There are different software support for \aab\ (Section~\ref{sec:ss}). Also, distinct use methods are incident (Section~\ref{sec:sp}). This section exposes this diversity and their integration, as linked data, both within \aab\ variants and within participatory instances.
-
-There are mainly three software pieces written to support \aab\ activity. Two of them are a server and client suite each (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}). The third is a fancy dashboard. Automated conversational agents (software [ro]bots) were used as alternative User Interfaces (\ui s), with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia}), and an initiative to make \aab\ available in all chat networks (see Section~\ref{sec:ubi}).
-
-All \aab\ software apparatus is contextualized in Table~\ref{tab:aas}.
-\subsubsection{First \aab: \httpb\ server, \html\ skin and shell client}\label{sec:aaFirst}
-Although deprecated in favor of \aab\ 01, this first \aab\ software presents the most numerous set of functionalities. To understand them,
-one needs to observe core design features of the newborn \aab:
+\section{Design features}\label{sec:desf}
+To understand use practices and software support (\sectionb s~\ref{sec:use} and~\ref{sec:sofsup}), one needs to observe core design features of \aab:
 \begin{itemize}
     \item Evenly spaced messages should be sent by the \aab\ user. The time lapse is called a ``slot'' and the message a ``shout''. A slot might refer to the time lapse and the message, this is context dependent and will be pointed on text if ambiguity occurs.
     \item Shouts should report the task being tackled and/or a briefing of what was done in the slot.
@@ -189,7 +177,36 @@ one needs to observe core design features of the newborn \aab:
 
 Variants of this features were conceived and practiced. Figure~\ref{fig:consult} exposes a diagram shared and referenced by \aab\ users in the first months of \aab\ practice.
 
-Client functionalities are:
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{figs/aaFirstMethodology}
+    \caption{A mind map of the AA methodology shared by users: i) Engagement cycle – the usage of AA; ii) Functionality – the design goals of the system; iii) Potentialities – envisioned benefits of AA by authors of the diagram. As seen in Section~\ref{sec:start}, core benefits emanate from the self-transparency aspect of~\aab, with worthy mentions to proving dedications and sharing processes.} 
+    \label{fig:consult}
+\end{figure}
+
+
+
+
+\section{Use practices}\label{sec:use}
+%\addcontentsline{toc}{subsection}{Systematic use proposals}
+%tags, slots, spacing, scattered, etc. Offline
+Distinct use methods are incident (Section~\ref{sec:sp}).
+\subsection{Words and tags}\label{sec:sp}
+\subsection{Shouts}\label{sec:sp}
+\subsection{Sessions}\label{sec:sp}
+\subsection{Developments}\label{sec:sp}
+\subsection{Suplimentary commands}\label{sec:sp}
+
+ \section{Software support}\label{sec:sofsup}
+%\addcontentsline{toc}{section}{Systems and data}
+ There are different software support for \aab\ (Section~\ref{sec:ss}). Also,  This section exposes this diversity and their integration, as linked data, both within \aab\ variants and within participatory instances.
+
+There are mainly three software pieces written to support \aab\ activity. Two of them are a server and client suite each (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}). The third is a fancy dashboard. Automated conversational agents (software [ro]bots) were used as alternative User Interfaces (\ui s), with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia}), and an initiative to make \aab\ available in all chat networks (see Section~\ref{sec:ubi}).
+
+All \aab\ software apparatus is contextualized in Table~\ref{tab:aas}.
+\subsubsection{First \aab: \httpb\ server, \html\ skin and shell client}\label{sec:aaFirst}
+Although deprecated in favor of \aab\ 01, this first \aab\ software presents the most numerous set of functionalities. Client functionalities are:
 \begin{itemize}
     \item 
 \end{itemize}
@@ -203,15 +220,6 @@ Core \html\ skin functionalities are:
 \begin{itemize}
     \item
 \end{itemize}
-
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=\textwidth]{figs/aaFirstMethodology}
-    \caption{A mind map of the AA methodology shared by users: i) Engagement cycle – the usage of AA; ii) Functionality – the design goals of the system; iii) Potentialities – envisioned benefits of AA by authors of the diagram. As seen in Section~\ref{sec:start}, core benefits emanate from the self-transparency aspect of~\aab, with worthy mentions to proving dedications and sharing processes.} 
-    \label{fig:consult}
-\end{figure}
-
 
 
 Further information of this and other versions of \aab\ are contextualized in Table~\ref{tab:aas}.
@@ -257,6 +265,41 @@ Further information of this and other versions of \aab\ are contextualized in Ta
 
 \section{Statistics}\label{sec:stats}
 %\addcontentsline{toc}{section}{Data statistics}
+\subsection{Occurrent activity}
+\subsubsection{Time activity}
+\subsubsection{User activity}
+\subsection{Dependent activity}
+\subsubsection{Character and token incidence}
+\subsubsection{Time and user dependent activity}
+\subsubsection{String and user dependent activity}
+\subsubsection{String and time dependent activity}
+\subsubsection{Morphosyntactic incidence}
+\subsubsection{Time-related stability}
+\subsection{Network activity}
+\subsubsection{Time user networks}
+% ambito no pico de atividade relaciona usuarios
+% rede unipartida de usuarios relacionados
+
+\subsubsection{Lexical user networks}
+% utilização de verbetes em comum relaciona usuarios
+% rede unipartida de usuarios relacionados
+
+\subsubsection{Network measures}
+% tabela com grausm forcas, clustering, betweenness, etc.
+
+\subsubsection{Network primitive sectioning}
+% diferenciação no particionamento das diferentes redes.
+
+\subsection{Principal components formation}
+\subsection{Immediate clustering}
+\subsubsection{Users clustering}
+% cada usuario eh um individuo
+\subsubsection{Words clustering}
+% cada verbete eh um individuo
+\subsection{Timeslot clustering}
+% cada hora do dia eh um individuo
+\subsection{Comparative analysis}
+\subsection{\aai, \ocd, and \participa}
 
 \section{Results}\label{sec:res}
 
