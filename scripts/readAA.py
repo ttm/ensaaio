@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-                                                 
 import rdflib as r
 from SPARQLWrapper import SPARQLWrapper, JSON
-import time, cPickle as pickle
+import sys, time, cPickle as pickle
 T=time.time()
 #g=r.Graph()
 #g.parse("/disco/aa01/rdf/aaStoreMongo.rdf")
@@ -20,7 +20,27 @@ PREFIX dc: <http://purl.org/dc/terms/>"""
 
 #sparql3.setQuery(PREFIX+q1)
 #q2="SELECT ?s ?o (group_concat(?s2) as ?ss) WHERE {?s a aa:User . ?s aa:nick ?o . ?s2 aa:user ?s . OPTIONAL { ?s2 a aa:Shout } } GROUP BY ?s ?o"
-#q2="SELECT ?nick ?msg ?created ?valid WHERE {?s a aa:User . ?s aa:nick ?nick .  OPTIONAL { ?sht aa:user ?s . ?sht a aa:Shout . ?sht aa:shoutMessage ?msg . ?sht aa:created ?created . } }"
+q2="""
+SELECT ?nick ?msg ?created ?valid WHERE {
+           ?sht a aa:Shout . 
+           OPTIONAL { ?sht aa:user ?s . 
+                     OPTIONAL {?s aa:nick ?nick }.
+           } .
+           OPTIONAL { ?sht aa:shoutMessage ?msg } . 
+           OPTIONAL { ?sht aa:created ?created } .
+           OPTIONAL { ?sht aa:valid ?valid } .
+           OPTIONAL { ?sht aa:session ?sessionID .
+                     OPTIONAL { ?sessionID aa:checkMessage ?smsg } .
+                     OPTIONAL { ?sessionID aa:score ?sscore } .
+                     OPTIONAL { ?sessionID aa:created ?screated } .
+                     OPTIONAL { ?sessionID aa:screencast ?sscreencast } .
+                     OPTIONAL { ?sessionID aa:checker ?cid .
+                                ?cid aa:nick ?cnick } .
+                     OPTIONAL { ?sessionID aa:checker ?cid .
+                                ?cid aa:nick ?cnick } .
+           } .
+}
+"""
 #q2="SELECT ?nick ?msg ?created ?sessionID ?checker ?screated ?smsg ?score ?screencast WHERE {?s a aa:User . ?s aa:nick ?nick .  OPTIONAL { ?sht aa:user ?s . ?sht a aa:Shout . ?sht aa:shoutMessage ?msg . ?sht aa:created ?created . ?sht aa:valid ?valid. } OPTIONAL { ?sht aa:session ?sessionID . ?sessionID aa:checker ?user2 . ?user2 aa:nick ?checker . ?sessionID aa:created ?screated . ?sessionID aa:checkMessage ?smsg . ?sessionID aa:score ?score . ?sessionID aa:screenscast ?screenscast } }"
 sparql3.setQuery(PREFIX+q2)
 sparql3.setReturnFormat(JSON)
@@ -60,6 +80,26 @@ for sht in res:
     except:
         valid=False
 
+    if msg:
+        if nick not in um.keys():
+            um[nick]=[] # lista de tuplas (msg, data)
+        if msg != u"TIMESLOT PERDIDO":
+            um[nick]+=[(msg,created,valid)] # lista de tuplas (msg, data)
+    #print("%s\n%s\n%s\n%s\n\n"%(nick, msg, created, valid))
+    #time.sleep(0.3)
+
+print(time.time()-T)
+
+# para cada session, verificar quais os dados vinculados e shoutIDs vinculados
+
+nicks=um.keys()
+count=0
+for nick in nicks:
+    checkers=[i for i in um[nick] if i[-1]]
+    count+=len(checkers)
+    
+
+"""
     try:
         checker=sht["checker"]["value"]
     except:
@@ -84,23 +124,4 @@ for sht in res:
         sid=sht["sessionID"]["value"]
     except:
         sid=""
-    if msg:
-        if nick not in um.keys():
-            um[nick]=[] # lista de tuplas (msg, data)
-        if msg != u"TIMESLOT PERDIDO":
-            um[nick]+=[(msg,created,
-                      checker,screated,smsg,score,screencast,sid)] # lista de tuplas (msg, data)
-    #print("%s\n%s\n%s\n%s\n\n"%(nick, msg, created, valid))
-    #time.sleep(0.3)
-
-print(time.time()-T)
-
-nicks=um.keys()
-count=0
-for nick in nicks:
-    checkers=[i for i in um[nick] if i[-1]]
-    count+=len(checkers)
-    
-
-
-
+"""
