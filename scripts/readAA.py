@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-                                                 
 import rdflib as r
 from SPARQLWrapper import SPARQLWrapper, JSON
-import time
+import time, cPickle as pickle
 T=time.time()
 #g=r.Graph()
 #g.parse("/disco/aa01/rdf/aaStoreMongo.rdf")
@@ -21,7 +21,7 @@ PREFIX dc: <http://purl.org/dc/terms/>"""
 #sparql3.setQuery(PREFIX+q1)
 #q2="SELECT ?s ?o (group_concat(?s2) as ?ss) WHERE {?s a aa:User . ?s aa:nick ?o . ?s2 aa:user ?s . OPTIONAL { ?s2 a aa:Shout } } GROUP BY ?s ?o"
 #q2="SELECT ?nick ?msg ?created ?valid WHERE {?s a aa:User . ?s aa:nick ?nick .  OPTIONAL { ?sht aa:user ?s . ?sht a aa:Shout . ?sht aa:shoutMessage ?msg . ?sht aa:created ?created . } }"
-q2="SELECT ?nick ?msg ?created ?sessionID ?checker ?screated ?smsg ?score ?screencast WHERE {?s a aa:User . ?s aa:nick ?nick .  OPTIONAL { ?sht aa:user ?s . ?sht a aa:Shout . ?sht aa:shoutMessage ?msg . ?sht aa:created ?created . ?sht aa:valid ?valid. ?sht aa:session ?sessionID . ?sessionID aa:checker ?user2 . ?user2 aa:nick ?checker . ?sessionID aa:created ?screated . ?sessionID aa:checkMessage ?smsg . ?sessionID aa:score ?score . ?sessionID aa:screenscast ?screenscast } }"
+#q2="SELECT ?nick ?msg ?created ?sessionID ?checker ?screated ?smsg ?score ?screencast WHERE {?s a aa:User . ?s aa:nick ?nick .  OPTIONAL { ?sht aa:user ?s . ?sht a aa:Shout . ?sht aa:shoutMessage ?msg . ?sht aa:created ?created . ?sht aa:valid ?valid. } OPTIONAL { ?sht aa:session ?sessionID . ?sessionID aa:checker ?user2 . ?user2 aa:nick ?checker . ?sessionID aa:created ?screated . ?sessionID aa:checkMessage ?smsg . ?sessionID aa:score ?score . ?sessionID aa:screenscast ?screenscast } }"
 sparql3.setQuery(PREFIX+q2)
 sparql3.setReturnFormat(JSON)
 
@@ -31,6 +31,14 @@ print time.time()-T
 
 
 res=results3["results"]["bindings"]
+
+f=open("./pickle/query2.pickle", 'wb')
+pickle.dump(res,f)
+f.close()
+#f=open("./pickle/query2.pickle", 'rb')
+#res=pickle.load(f)
+#print(time.time()-T)
+ 
 
 #users=[i["s"]["value"] for i in res]
 nicks=[i["nick"]["value"] for i in res]
@@ -51,14 +59,47 @@ for sht in res:
         print "TEM SIM"
     except:
         valid=False
+
+    try:
+        checker=sht["checker"]["value"]
+    except:
+        checker=""
+    try:
+        screated=sht["screated"]["value"]
+    except:
+        screated=""
+    try:
+        smsg=sht["smsg"]["value"]
+    except:
+        smsg=""
+    try:
+        score=sht["score"]["value"]
+    except:
+        score=""
+    try:
+        screencast=sht["screencast"]["value"]
+    except:
+        screencast=""
+    try:
+        sid=sht["sessionID"]["value"]
+    except:
+        sid=""
     if msg:
         if nick not in um.keys():
             um[nick]=[] # lista de tuplas (msg, data)
         if msg != u"TIMESLOT PERDIDO":
-            um[nick]+=[(msg,created)] # lista de tuplas (msg, data)
+            um[nick]+=[(msg,created,
+                      checker,screated,smsg,score,screencast,sid)] # lista de tuplas (msg, data)
     #print("%s\n%s\n%s\n%s\n\n"%(nick, msg, created, valid))
     #time.sleep(0.3)
 
+print(time.time()-T)
+
+nicks=um.keys()
+count=0
+for nick in nicks:
+    checkers=[i for i in um[nick] if i[-1]]
+    count+=len(checkers)
     
 
 
