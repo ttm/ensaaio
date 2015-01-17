@@ -77,7 +77,7 @@ SELECT ?shID ?seID
 #        tval=""
 #    return tval
 #G=getVal
-#
+#countts=0
 #for sht in res:
 #    shID=sht["shID"]["value"]
 #    if "msg" in sht.keys():
@@ -107,9 +107,11 @@ SELECT ?shID ?seID
 #                if G("seID") not in ss.keys():
 #                    ss[G("seID")]=[]
 #                ss[G("seID")]+=[(G("screated"), G("smsg"), G("screenscast"), G("sscore"),G("cnick"),G("shID"))]
-#    #print("%s\n%s\n%s\n%s\n\n"%(nick, msg, created, valid))
-#    #time.sleep(0.3)
-#
+#        else:
+#            countts+=1
+    #print("%s\n%s\n%s\n%s\n\n"%(nick, msg, created, valid))
+    #time.sleep(0.3)
+
 #print(time.time()-T)
 #
 #f=open("./pickle/dicts.pickle", 'wb')
@@ -271,11 +273,11 @@ print(time.time()-T)
 #f.close()
 ###############################
 
-
-for aa in AA:
-    for nick in aa:
-        print('%s & %i'%(nick, len(um[nick]),))
-
+#
+#for aa in AA:
+#    for nick in aa:
+#        print('%s & %i'%(nick, len(um[nick]),))
+#
 # tabela com numero total de mensagens por nick
 # e agrupado por alias
 #AA=[(U[0],U[5],U[9]), # humannoise
@@ -293,8 +295,59 @@ for aa in AA:
 #    (U[18],), # hick (nivaldinho)
 #]
 
-nicks=um.keys()
-count=0
-for nick in nicks:
-    checkers=[i for i in um[nick] if i[-1]]
-    count+=len(checkers)
+#nicks=um.keys()
+#count=0
+#for nick in nicks:
+#    checkers=[i for i in um[nick] if i[-1]]
+#    count+=len(checkers)
+
+countn=0 # notify
+counta=0 # start
+counto=0 # stop
+countp=0 # push
+countsh=0 # shout
+countal=0 # alert
+# ver quais comecam com alert e com push e jah tirar tb
+exp=[]
+um_={}
+for nick in ums:
+    ok=0
+    um_[nick]=[]
+    for msg in um[nick]:
+        if msg[0] == 'notify':
+            countn+=1
+        elif msg[0] == 'start':
+            counta+=1
+        elif msg[0] == 'stop':
+            counto+=1
+        elif msg[0] == 'push':
+            countp+=1
+        elif msg[0] == 'shout ':
+            countsh+=1
+        elif msg[0] == 'alert ':
+            countal+=1
+        else:
+            um_[nick]+=[msg]
+        #elif len(msg[0].split())==0:
+        #    print "msg VAZIA"
+        #elif len(msg[0].split())==1:
+        #    print msg[0]
+        #    exp.append(msg[0])
+        
+
+countts=55831
+countms=sum([len(um_[i]) for i in um_.keys()])
+counts=[
+(countts,"lost timeslot"),
+(countsh,"empty shouts"),
+(countal,"empty alerts"),
+(countn,"notify"),
+(countp,"push"),
+(counta,"start"),
+(counto,"stop"),
+(countms,"message shouts"),
+]
+# para tabela latex com message type, message count:
+for c in counts:
+    print("%s & %i \\\\ \\hline"%(c[1],c[0]))
+print("total & %i "%(countts+ countms+ countsh+ countal+ countn+ countp+counta+counto+countms))

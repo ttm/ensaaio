@@ -25,6 +25,9 @@ print(time.time()-T)
 # remover "shout " do comeco das msgs
 # remover "alert " do comeco das msgs
 # remover "notify"
+# remover "push"
+# remover "start"
+# remover "stop"
 
 # fazer histograma de atividade no tempo
 
@@ -41,8 +44,11 @@ print(time.time()-T)
 # dos autores e apresentacao para a comunidade
 
 for aa in AA:
+    total=0
     for nick in aa:
         print('%s & %i'%(nick, len(um[nick]),))
+        total+=len(um[nick])
+    print total
 
 nicks=um.keys()
 count=0
