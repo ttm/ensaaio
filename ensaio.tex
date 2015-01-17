@@ -32,6 +32,7 @@
 \usepackage{graphicx} % Required for including pictures
 \usepackage{wrapfig} % Allows in-line images
 \usepackage{tocloft}
+\usepackage{multirow}
 
 \usepackage{mathpazo} % Use the Palatino font
 \usepackage[T1]{fontenc} % Required for accented characters
@@ -56,6 +57,8 @@
 \newcommand{\ontologiaa}{\textsc{o}ntologi\textsc{aa}}
 \newcommand{\owl}{{\sc owl}}
 \newcommand{\rdfi}{{\sc Rdf}}
+\newcommand{\mongodb}{{\sc m}ongo{\sc db}}
+\newcommand{\mysql}{{\sc m}y{\sc sql}}
 \newcommand{\rdf}{{\sc rdf}}
 %\newcommand{\paaineli}{P{\sc aa}inel}
 \newcommand{\paaineli}{P{\bf \sc aa}inel}
@@ -163,7 +166,7 @@ Transparency in this context should be understood as usual organization or State
 7th June, 2013, Cleodon Silva~\cite{cleodon} died by heart failure. In his memory, the \lm\ group was born (Pedro Macambira was one of this pseudonyms). The \aab\ was conceived as the ``cardiac pulse'' of the group and is in constant usage since July, 2011. It gathers thousands of messages, tenths of users and hundreds of processes. \aai\ messages present contributions, such as  commits to official repositories of Evince, \firefox, \openoffice, \puredata\ and other software~\cite{paaper}. A number of other activities were registered: new software elaboration and coding, writing of articles, \wiki s and \etherpad s; articulation of civil society, academic and state instances; studies and reviews. Even so, \aab\ is highly biased towards software development, as can be observed in \sectionb s~\ref{sec:stats} and~\ref{sec:res}, and in the \gsd\ article about \aab~\cite{paaper}.
 
 \subsection{Essay structure}\label{sec:ess}
-Section~\ref{sec:sp} describes \aab\ uses incident and envisioned.
+Section~\ref{sec:use} describes \aab\ uses incident and envisioned.
 Section~\ref{sec:soft} exposes different software written or used for \aab. Section~\ref{sec:data} is dedicated to data. Section~\ref{sec:stats} further develops statistics about \aab\ in terms of vocabulary and networks. Section~\ref{sec:res} states results and \sectionb~\ref{sec:con} a concludes with further works and acknowledgements. Tables and figures are inplace, kept as simple briefings and illustrations. External resources - mainly documents, data and scripts - are referenced for further inspection.
 
 \section{Design features}\label{sec:desf}
@@ -191,12 +194,14 @@ Variants of this features were conceived and practiced. Figure~\ref{fig:consult}
 \section{Use practices}\label{sec:use}
 %\addcontentsline{toc}{subsection}{Systematic use proposals}
 %tags, slots, spacing, scattered, etc. Offline
-Distinct use methods are incident (Section~\ref{sec:sp}).
-\subsection{Words and tags}\label{sec:sp}
-\subsection{Shouts}\label{sec:sp}
-\subsection{Sessions}\label{sec:sp}
-\subsection{Developments}\label{sec:sp}
-\subsection{Suplimentary commands}\label{sec:sp}
+Distinct use methods are incident, mostly regarding the design exposed in \sectionb~\ref{sec:desf}. Even those cases which are not standard can be understood in the light of \aab\ paradigm. Deviations from the ideal case is always present (\sectionb~\ref{sec:devia}).
+
+\subsection{Words and tags}\label{sec:usewt}
+\subsection{Shouts}\label{sec:usesh}
+\subsection{Sessions}\label{sec:usess}
+\subsection{Developments}\label{sec:usedev}
+\subsection{Suplimentary commands}\label{sec:usesc}
+\subsection{Deviations from \aab\ paradigm}\label{sec:devia}
 
  \section{Software support}\label{sec:sofsup}
 %\addcontentsline{toc}{section}{Systems and data}
@@ -247,10 +252,12 @@ Further information of this and other versions of \aab\ are contextualized in Ta
 & & & & & \\\hline
 & & & & & \\\hline
   \end{tabular}
-  \label{ospRestr}
 \end{table}
 
 \subsubsection{The \#labmacambira@Freenode \irc\ channel log}
+\subsubsection{Auxiliary scripts}
+Python script at~\cite{mysqlTri} outputs \rdf\ from a \mysql\ database, mostly from first \aab\ version.
+Python script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from first \aab\ version, to \rdf\ data.
 
 \section{Data}\label{sec:data}
 \subsection{The \ontologiaa\ \owl\ ontology}
@@ -266,6 +273,24 @@ Further information of this and other versions of \aab\ are contextualized in Ta
 \section{Statistics}\label{sec:stats}
 %\addcontentsline{toc}{section}{Data statistics}
 \subsection{Occurrent activity}
+
+\begin{table}[!h]
+  \centering
+  \caption{.}\label{tab:msgTy}
+  \begin{tabular}{|l|l|l|}\hline
+      {\bf message content } & {\bf count} & {\bf type}   \\\hline\hline
+      lost timeslot & 55831 & -//- \\ \hline\hline
+ empty shouts & 92    & \multirow{3}{*}{void messages = 17125} \\
+ empty alerts & 83        &  \\
+       notify & 16950     &  \\ \hline\hline
+ push & 1718 & \multirow{3}{*}{operational messages = 3936 } \\ 
+start & 1169 & \\ 
+ stop & 1049 & \\ \hline
+      message shouts & 34770 & -//- \\ \hline
+      total & 146432 & -//- \\\hline
+  \end{tabular}
+\end{table}
+
 \subsubsection{Time activity}
 \subsubsection{User activity}
 \subsection{Dependent activity}
