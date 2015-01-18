@@ -59,7 +59,7 @@ print(time.time()-T)
 #    count+=len(checkers)
 #
 f=open("./pickle/um_ss_.pickle", 'rb')
-um_,ss_,shd_=pickle.load(f)
+um_,ss_,shd_,shLL_=pickle.load(f)
 print(time.time()-T)
 ### users in sessions
 # pega cada session, a ID do shout, vai no dict, pega o user.
@@ -113,6 +113,8 @@ users=[]
 shs=[list(shd_[i])+[i] for i in shd_.keys()]
 shs_=[i[2] for i in shs]
 shs_.sort()
+shsLL_=[i[0] for i in shLL_]
+shsLL_.sort()
 
 shs__=[datetime.datetime.strptime((i,i[:i.find(".")])["." in i],'%Y-%m-%dT%H:%M:%S') for i in shs_[224:]]
 miny=shs__[0].year
@@ -129,8 +131,28 @@ for y in xrange(miny,maxy+1):
 vals_=vals[6:-11]
 #fig = p.figure()
 #ax = fig.add_subplot(111)
-p1 = pp.bar(range(len(vals_)), [i[1] for i in vals_],   0.45)
-pp.xticks([i+0.45/2 for i in xrange(len(vals))],
+p1 = pp.bar(range(len(vals_)), [i[1] for i in vals_],   width=0.75)
+
+### IRC
+shsLL__=[datetime.datetime.strptime((i,i[:i.find(".")])["." in i],'%Y-%m-%dT%H:%M:%S') for i in shsLL_]
+miny=shsLL__[0].year
+maxy=shsLL__[-1].year
+vals2=[]
+for y in xrange(miny,maxy+1):
+    SH=[i for i in shsLL__ if i.year==y]
+    for m in xrange(1,12+1):
+        mc=sum([i.month==m for i in SH])
+        if m==1:
+            vals2+=[(u"%i-%i"%(y,m),mc)]
+        else:
+            vals2+=[(u"%i"%(m,),mc)]
+#vals2_=vals2[6:-11]
+vals2_=vals2
+p2 = pp.bar(range(len(vals2_)), [i[0][1]+i[1][1] for i in zip(vals2_,vals_)],   0.75,color="red")
+
+
+
+pp.xticks([i+0.45/2 for i in xrange(len(vals_))],
           [i[0] for i in vals_] , rotation=70)
 pp.xlim(-1,len(vals_))
 pp.ylim(0,max([i[1] for i in vals_])+200)
