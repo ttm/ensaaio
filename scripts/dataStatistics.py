@@ -147,20 +147,108 @@ for y in xrange(miny,maxy+1):
             vals2+=[(u"%i"%(m,),mc)]
 #vals2_=vals2[6:-11]
 vals2_=vals2[6:-11]
-width=0.6
-p2 = pp.bar(12+n.arange(len(vals2_)), [i[0][1]+i[1][1] for i in zip(vals2_,vals_[12:])],   width,color="red")
-p1 = pp.bar(range(len(vals_)), [i[1] for i in vals_],   width)
-
-
-
-pp.xticks([i+width/2 for i in xrange(len(vals_))],
-          [i[0] for i in vals_] , rotation=70)
-pp.yticks(n.arange(0,5500,500))
-pp.xlim(-1,len(vals_))
-pp.ylim(0,max([i[1] for i in vals_])+200)
-pp.ylabel(u'messages count')
-pp.legend((p1[0], p2[0]), ('MySQL and MongoDB', 'IRC logs'))
-pp.title("AA messages registered each month")
-pp.show()
+#width=0.6
+#p2 = pp.bar(12+n.arange(len(vals2_)), [i[0][1]+i[1][1] for i in zip(vals2_,vals_[12:])],   width,color="red")
+#p1 = pp.bar(range(len(vals_)), [i[1] for i in vals_],   width)
+#
+#
+#
+#pp.xticks([i+width/2 for i in xrange(len(vals_))],
+#          [i[0] for i in vals_] , rotation=70)
+#pp.yticks(n.arange(0,5500,500))
+#pp.xlim(-1,len(vals_))
+#pp.ylim(0,max([i[1] for i in vals_])+200)
+#pp.ylabel(u'messages count')
+#pp.legend((p1[0], p2[0]), ('MySQL and MongoDB', 'IRC logs'))
+#pp.title("AA messages registered each month")
+#pp.show()
 
 msgs_mes=[i[0][1]+i[1][1] for i in zip(vals2_,vals_[12:])]
+
+####### ATIVIDADE
+# horario de todas as msgs
+shT=shs_+shsLL_
+shT.sort()
+shT_=shT[224:15145]
+shT__=[datetime.datetime.strptime((i,i[:i.find(".")])["." in i],'%Y-%m-%dT%H:%M:%S') for i in shT_]
+# filtrar mensagens de 2012 p frente. Sem a $$
+shT2_=shT[15145:]
+shT2__=[datetime.datetime.strptime((i,i[:i.find(".")])["." in i],'%Y-%m-%dT%H:%M:%S') for i in shT2_]
+
+def cDiff(vetor,bins_):
+    h1=n.histogram(vetor,bins=bins_)[0]
+    return max(h1)/float(min(h1))
+# segundos do minuto
+s1=[i.second for i in shT__]
+ms1=n.mean(s1)
+ds1=n.std(s1)
+Ms1=cDiff(s1,n.arange(61))
+p.subplot(611)
+p.hist(s1,bins=n.arange(61),normed=1)
+p.title("activity in each second (a)")
+s2=[i.second for i in shT2__]
+ms2=n.mean(s2)
+ds2= n.std(s2)
+p.subplot(612)
+p.hist(s2,bins=n.arange(61),normed=1)
+p.title("activity in each second (b)")
+Ms2=cDiff(s2,n.arange(61))
+# minutos da hora
+m1=[i.minute for i in shT__]
+mm1=n.mean(m1)
+dm1=n.std(m1)
+Mm1=cDiff(m1,n.arange(61))
+p.subplot(613)
+p.hist(m1,bins=n.arange(61),normed=1)
+p.title("activity in each minute (a)")
+m2=[i.minute for i in shT2__]
+mm2=n.mean(m2)
+dm2= n.std(m2)
+Mm2=cDiff(m2,n.arange(61))
+p.subplot(614)
+p.hist(m2,bins=n.arange(61),normed=1)
+p.title("activity in each minute (b)")
+
+# distribuicao uniforme
+u1=n.random.random_integers(0,59,len(s1))
+mu1=n.mean(u1)
+du1= n.std(u1)
+Mu1= cDiff(u1,n.arange(61))
+p.subplot(615)
+p.hist(u1,bins=n.arange(61),normed=1)
+p.title("Uniform distribution simulation (a)")
+u2=n.random.random_integers(0,59,len(s2))
+mu2=n.mean(u2)
+du2= n.std(u2)
+Mu2= cDiff(u2,n.arange(61))
+p.subplot(616)
+p.hist(u2,bins=n.arange(61),normed=1)
+p.title("Uniform distribution simulation (b)")
+p.show()
+
+# horas do dia
+h1=[i.hour for i in shT__]
+mh1=n.mean(h1)
+def GG(nn):
+    if abs(nn-mh1)>12:
+        return 24-abs(nn-mh1) 
+    else:
+        return abs(nn-mh1)
+dh1__=n.array([GG(i) for i in h1])
+dh1=((dh1__**2.)/len(dh1__))**0.5
+Mh1=cDiff(h1,n.arange(25))
+h2=[i.hour for i in shT2__]
+mh2=n.mean(h2)
+def GG(nn):
+    if abs(nn-mh2)>12:
+        return 24-abs(nn-mh2) 
+    else:
+        return abs(nn-mh2)
+dh2__=n.array([GG(i) for i in h2])
+dh2=((dh2__**2.)/len(dh2__))**0.5
+Mh2=cDiff(h2,n.arange(25))
+
+# dias da semana
+# dias do mes
+# meses do ano
+
