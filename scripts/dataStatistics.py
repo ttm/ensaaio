@@ -163,3 +163,4 @@ pp.legend((p1[0], p2[0]), ('MySQL and MongoDB', 'IRC logs'))
 pp.title("AA messages registered each month")
 pp.show()
 
+msgs_mes=[i[0][1]+i[1][1] for i in zip(vals2_,vals_[12:])]
