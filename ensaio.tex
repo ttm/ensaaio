@@ -276,22 +276,55 @@ Python script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from f
 
 \begin{table}[!h]
   \centering
-  \caption{.}\label{tab:msgTy}
+  \caption{Registered \aab messages. Operational messages, for signaling session start, stop and publishing local logs (push) are the least abundant. Usage messages with quasi-null semantic content delivers indicative that the user is connected to \aab, but no more than that. Messages registering user processes were found to be 34770+1654 = 36424. There were 7504 \irc\ \aab\ messages, of which 1654 were not registered in databases, probably because of software failures. Automated messages of `lost timeslot' are the most numerous, with almost half of all messages. }\label{tab:msgTy}
   \begin{tabular}{|l|l|l|}\hline
       {\bf message content } & {\bf count} & {\bf type}   \\\hline\hline
-      lost timeslot & 55831 & -//- \\ \hline\hline
+ push & 1718 & \multirow{3}{*}{operational messages = 3936 } \\ 
+start & 1169 & \\ 
+ stop & 1049 & \\ \hline\hline
  empty shouts & 92    & \multirow{3}{*}{void messages = 17125} \\
  empty alerts & 83        &  \\
        notify & 16950     &  \\ \hline\hline
- push & 1718 & \multirow{3}{*}{operational messages = 3936 } \\ 
-start & 1169 & \\ 
- stop & 1049 & \\ \hline
-      message shouts & 34770 & -//- \\ \hline
-      total & 146432 & -//- \\\hline
+      message shouts & 34770 & \multirow{2}{*}{messages about ongoing tasks = 36424}  \\ 
+      \irc\ message shouts & 1654 & \\ \hline
+      lost timeslot & 59863 & client automated message \\ \hline\hline
+      {\bf total} & 115694 & all messages are textual \\\hline
   \end{tabular}
 \end{table}
 
+
+\begin{table}[!h]
+  \centering
+  \caption{Registered \aab sessions.}\label{tab:session}
+  \begin{tabular}{|l|l|}\hline
+      {\bf description} & {\bf value}   \\\hline\hline
+      number of sessions & 7288 \\ \hline
+      number of shouts in sessions & 20299 \\ \hline
+      number sessions with more than 1 shout & 905 \\ \hline
+      number of shouts in sessions with more than 1 shout & 13916 \\ \hline
+      number of users in sessions & 14 \\ \hline
+      number of checkers in sessions & 36 \\ \hline
+      number of screencasts in sessions & 295 \\ \hline
+      number of scored sessions & 191 \\ \hline
+      average session score & 3.18 \\ \hline
+      standard deviation of score & 0.74 \\ \hline
+      average number of shouts per session & 15.38 \\ \hline
+      standard deviation of number of shouts & 19.82 \\ \hline
+      first session from & 2011-07-06T03:23:05 \\ \hline
+      last session from & 2014-04-01T09:11:36 \\ \hline
+
+  \end{tabular}
+\end{table}
+
+
 \subsubsection{Time activity}
+\begin{figure}[H]
+    \hspace{-25mm}
+    \includegraphics[width=1.3\textwidth]{imgs/actHist}
+  \caption{\small The average number of messages each month is $\mu=507.1$, with a standard deviation of $\sigma=336.63 $.}\label{fig:telao2}
+\end{figure}
+
+
 \subsubsection{User activity}
 \subsection{Dependent activity}
 \subsubsection{Character and token incidence}
