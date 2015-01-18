@@ -131,7 +131,6 @@ for y in xrange(miny,maxy+1):
 vals_=vals[6:-11]
 #fig = p.figure()
 #ax = fig.add_subplot(111)
-p1 = pp.bar(range(len(vals_)), [i[1] for i in vals_],   width=0.75)
 
 ### IRC
 shsLL__=[datetime.datetime.strptime((i,i[:i.find(".")])["." in i],'%Y-%m-%dT%H:%M:%S') for i in shsLL_]
@@ -147,15 +146,20 @@ for y in xrange(miny,maxy+1):
         else:
             vals2+=[(u"%i"%(m,),mc)]
 #vals2_=vals2[6:-11]
-vals2_=vals2
-p2 = pp.bar(range(len(vals2_)), [i[0][1]+i[1][1] for i in zip(vals2_,vals_)],   0.75,color="red")
+vals2_=vals2[6:-11]
+width=0.6
+p2 = pp.bar(12+n.arange(len(vals2_)), [i[0][1]+i[1][1] for i in zip(vals2_,vals_[12:])],   width,color="red")
+p1 = pp.bar(range(len(vals_)), [i[1] for i in vals_],   width)
 
 
 
-pp.xticks([i+0.45/2 for i in xrange(len(vals_))],
+pp.xticks([i+width/2 for i in xrange(len(vals_))],
           [i[0] for i in vals_] , rotation=70)
+pp.yticks(n.arange(0,5500,500))
 pp.xlim(-1,len(vals_))
 pp.ylim(0,max([i[1] for i in vals_])+200)
 pp.ylabel(u'messages count')
+pp.legend((p1[0], p2[0]), ('MySQL and MongoDB', 'IRC logs'))
+pp.title("AA messages registered each month")
 pp.show()
 
