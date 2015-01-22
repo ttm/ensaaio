@@ -183,7 +183,7 @@ Variants of this features were conceived and practiced. Figure~\ref{fig:consult}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=\textwidth]{figs/aaFirstMethodology}
+    \includegraphics[width=\textwidth]{imgs/aaFirstMethodology}
     \caption{A mind map of the AA methodology shared by users: i) Engagement cycle – the usage of AA; ii) Functionality – the design goals of the system; iii) Potentialities – envisioned benefits of AA by authors of the diagram. As seen in Section~\ref{sec:start}, core benefits emanate from the self-transparency aspect of~\aab, with worthy mentions to proving dedications and sharing processes.} 
     \label{fig:consult}
 \end{figure}
@@ -210,13 +210,46 @@ These tagging schemes was also used as a way to enable the ``ubiquitous \aab'', 
 Messages for \aab\ usage can be of various types, as shown in Table~\ref{tab:msgTy}. Usually, the type was dictated by first word of the message. Start messages started an \aab\ session, while stop messages finished an ongoing session. Push messages sent local \aab\ sessions (or independent shouts) to a shared database. There was only one automatic message, designated to register ``lost timeslot'' of sessions (see Section~\ref{sec:usess}). Additional messages were dedicated to query for tickets attributed to the user, milestones and other traditional software development managements facilities.
 
 \subsubsection{Shouts}
-By far the most important \aab\ related message to date is the ``shout''. Dedicated to expose ongoing tasks, shouts are recurrently envisioned as a structured message, in which the user classifies the shout through special words and tags, and add a natural language description of what is being done. Nevertheless, shouts are used by all \aab\ users as a short natural language description of what current efforts, without classification whatsoever of the message. Example of structured shout proposals are in~\cite{aaWiki} and~\cite{aaREADME}.
+By far the most important \aab\ related message to date is the ``shout''. Dedicated to expose ongoing tasks, shouts are recurrently envisioned as a structured message, in which the user classifies the shout through special words and tags, and describes ongoing efforts with natural language (usually Portuguese or English). Example of structured shout proposals are in~\cite{aaWiki} and~\cite{aaREADME}. Nevertheless, shouts are used by all \aab\ users, in almost all cases, without such sophisticated structure, but as a plain short natural language description of current efforts, i.e. without classification whatsoever of the message. 
 
 \subsection{Sessions}\label{sec:usess}
-\subsection{Developments}\label{sec:usedev}
-\subsection{Suplimentary commands}\label{sec:usesc}
-\subsection{Deviations from \aab\ paradigm}\label{sec:devia}
+\aai\ sessions are collections of \aab\ shouts.
+These have had a specific incidence in \aab\ practice:
+\begin{itemize}
+    \item Shouts within a session were input by user each 15 minutes.
+    \item Tolerance for shouts in an ideal session was of $\pm 5$ minutes, considered 15 minutes grid.
+    \item Total duration of 2h, in which 8 shouts should outline tasks and technologies.
+    \item A short screencast was recorded at the end of each session, in which the user exposed dedication within seconds.
+    \item The session was sent to a random user for peer validation in which the session received a score based on shouts and screencast.
+\end{itemize}
 
+Such a session design was very important in first 6 months of \aab,
+where each of almost 10 apprentices were dedicating a session per day.
+Other users also delivered \aab\ sessions, but not as regularly.
+Noteworthy: \aab\ shouts can be separated by durations different from 15 minutes: 
+example of incident shout separations include 5 minutes, 2 minutes, 30 minutes, 1h.
+Most shouts are not explicitly related to sessions, but most shouts still occur in
+a session-like context. This is regarded as a consequence of the intuitive usage
+\aab\ sessions were aimed for, and as an inheritance of early \aab\ practice.
+From now on, \aab\ session is going to be used as meaning both a session registered as such,
+as an arbitrary time-contiguous set of shouts from the same user. Text will point such
+specificity if necessary.
+
+\subsection{Accomplishments}\label{sec:usedev}
+Processes registered by \aab\ usage often purposes to accomplish something: 
+write a software or an article;
+make images, music or research scripts; 
+articulate groups, read technical material or take online classes; etc. 
+
+These tasks usually spread entire sessions. Sometimes, one session can embrace
+multiple tasks. A quite common \aab\ usage is to shout one or just a few
+messages about current efforts, without much care for regularity or
+completeness.
+
+
+\subsection{Supplementary commands}\label{sec:usesc}
+\subsection{Deviations from \aab\ paradigm}\label{sec:devia}
+usos espúrios: de propaganda, de exibicionismo de produtos finais, de introducao ao irc e hacking.
  \section{Software support}\label{sec:sofsup}
 %\addcontentsline{toc}{section}{Systems and data}
  There are different software support for \aab\ (Section~\ref{sec:ss}). Also,  This section exposes this diversity and their integration, as linked data, both within \aab\ variants and within participatory instances.
