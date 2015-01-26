@@ -57,6 +57,7 @@
 \newcommand{\wiki}{\textsc{w}iki}
 \newcommand{\etherpad}{\textsc{e}therpad}
 \newcommand{\irc}{\textsc{irc}}
+\newcommand{\irci}{\textsc{Irc}}
 \newcommand{\ocd}{\textsc{ocd}}
 \newcommand{\participa}{\textsc{p}articipa.br}
 \newcommand{\httpb}{\textsc{http}}
@@ -182,7 +183,7 @@ Transparency in this context should be understood as usual organization or State
 
 \subsection{Essay structure}\label{sec:ess}
 Section~\ref{sec:use} describes \aab\ uses incident and envisioned.
-Section~\ref{sec:soft} exposes different software written or used for \aab. Section~\ref{sec:data} is dedicated to data. Section~\ref{sec:stats} further develops statistics about \aab\ in terms of vocabulary and networks. Section~\ref{sec:res} states results and \sectionb~\ref{sec:con} a concludes with further works and acknowledgements. Tables and figures are inplace, kept as simple briefings and illustrations. External resources - mainly documents, data and scripts - are referenced for further inspection.
+Section~\ref{sec:sofsup} exposes different software written or used for \aab. Section~\ref{sec:data} is dedicated to data. Section~\ref{sec:stats} further develops statistics about \aab\ in terms of vocabulary and networks. Section~\ref{sec:res} states results and \sectionb~\ref{sec:con} a concludes with further works and acknowledgements. Tables and figures are inplace, kept as simple briefings and illustrations. External resources - mainly documents, data and scripts - are referenced for further inspection.
 
 \section{Design features}\label{sec:desf}
 To understand use practices and software support (\sectionb s~\ref{sec:use} and~\ref{sec:sofsup}), one needs to observe core design features of \aab:
@@ -301,7 +302,7 @@ Full features of the software extrapolates information above and article scope, 
 
 Throughout Jul/2011-Mar/2014, first version of \aab, described in this, was used directly of routed from bots (see Section~\ref{sec:lalenia}) and gadgets (Section~\ref{sec:ubi}).
 
-\subsection{\aai\ 0.1}\label{sec:aaFirst}
+\subsection{\aai\ 0.1}\label{sec:aa01}
 Although there was no online \aab\ software support in the months of April and May 2014, there was \aab\ activity, as seen in Figure~\ref{fig:mAct}. This motivated a minimum version of \aab\ to support this visceral usage, that went beyond the software support: \aab\ 0.1~\cite{aa01r}.
 
 This implementation targeted the shout message. The dorsal spine is to register shouts independently. All other characteristics should be left to data mining and user dependent tagging.
@@ -349,19 +350,19 @@ To ease usage of \aab, and enhance social aspects, the lalenia \irc\ bot was use
 \end{itemize}
 
 
-\subsubsection{The \#labmacambira@Freenode \irc\ channel log}
+\subsubsection{The \#labmacambira@Freenode \irc\ channel log}\label{sec:cl}
 As stated by lalenia, {\tt on \#labmacambira there have been 172554 messages, containing 6964778 characters, 1066138 words, 4202 smileys, and 10181 frowns; 178 of those messages were ACTIONs.  There have been 31906 joins, 680 parts, 31109 quits, 0 kicks, 4 mode changes, and 133 topic changes}.
 
 Within information in lalenia logs, there were found 1,654 \aab\ shouts that were not in either \mysql\ or \mongodb\ databases. Actually, to ease mining, any shout in channel log whose message is identical to any message in all 114,040 messages from \mongodb\ and \mysql\ was discarded. Therefore, there was probably a few more shouts in \#labmarambira \irc\ channel log then what is reported here.
 
 \subsection{Ubiquitous \aab}\label{sec:ubi}
-Following the route posed by \aab\ social network interfaces (see Sections~\ref{sec:lalenia} and~\ref{sec:cl}), the Ubiquitous \aab\ is the expansion to all social networks and, indeed, to any media in which activity can be registered. There are two approaches to ubiquitous \aab:
+Following the route posed by \aab\ social network interfaces (see Section~\ref{sec:lalenia}), the Ubiquitous \aab\ is the expansion to all social networks and, indeed, to any media in which activity can be registered. There are two approaches to ubiquitous \aab:
 \begin{enumerate}
-    \item A software that connects to many messaging services as a bot. One implementation connected to all \irc, \twitter, \gchat, \facebook, email and \msn. This bot usually receives messages and register them as \aab\ shouts, but can have more elaborate communication procedures~\cite{ubiqui}.
+    \item A software that connects to many messaging services as a bot. One implementation connected to all \irc, \twitter, \gchat, \facebook, email and \msn. This bot usually receives messages and register them as \aab\ shouts, but can have more elaborate communication procedures~\cite{ubi}.
     \item Tags with which messages are binded to \aa\ activity. This automatically enables \aab\ usage in all social platforms. Messages can be mined for reports and other community usage.
 \end{enumerate}
 
-Ubiquitous \aab\ has mythological aspects: is understood as the receiver part of the Yupana, a mythological entity~\cite{yupana} that receives and spreads all things; it is also seen as a necessary step to human unification~\cite{wisaa}.
+Ubiquitous \aab\ has mythological aspects: is understood as the receiver part of the Yupana Kernel, a mythological entity that receives and spreads all things~\cite{yupana}; and is also understood as a necessary step to human unification~\cite{wisaa,ciberiun}.
 
 %\addcontentsline{toc}{subsection}{Software support}
 \begin{table}[!h]
@@ -371,8 +372,8 @@ Ubiquitous \aab\ has mythological aspects: is understood as the receiver part of
       {\bf version name} & {\bf main languages} & {\bf user interface} & {\bf database} & {\bf code repository} & {\bf available at} \\\hline\hline
 First \aab & \php, \python, \bash & linux terminal, \html & \mysql & \cite{aafc,aafs} & -//- \\\hline
 \aai\ 0.1 & \python & linux terminal, \httpb & \mongodb & \cite{aa01r} & \cite{aa01c,aa01s} \\\hline
-Lalenia bot & \python & \irc\ & any &\cite{} & \cite{} \\\hline
-Ubiquitous \aab & \python & \irc, \twitter, \gchat, \facebook, email, \msn & any & \url{} & -//- \\\hline
+Lalenia bot & \python & \irc\ & any &\cite{lalenia} & \#labmacambira@Freenode \irc\ channel \\\hline
+Ubiquitous \aab & \python & \irc, \twitter, \gchat, \facebook, email, \msn & any & \url{ubi} & -//- \\\hline
   \end{tabular}
 \end{table}
 
@@ -451,7 +452,7 @@ start & 1169 & \\
 \begin{figure}[H]
     \hspace{-25mm}
     \includegraphics[width=1.3\textwidth]{imgs/segMinHist}
-    \caption{\small Histogram of activity in \aab\ along seconds and minutes. A strong 15 minutes pattern is visible in (a). The same pattern is apparent in all present histograms, although less incisive. This pattern was not found in mailing lists~\cite{stabNet}, where distribution of activity along seconds and minutes was more homogeneous than Numpy uniform distribution simulator. In \aab\ the scene is the opposite: while simulations delivers $\tau=\frac{max[count(i)]}{min[count(i)]}\approx1.38$(a) and $\approx 1.26$ (b), shouts present $\tau=1.47$ and $\tau=1.48$, seconds for (a) and (b), and$\tau=2.32$ and $\tau=1.58$, minutes for (a) and (b). Means are considerably bellow $29.5$, which might indicate a tendency to shout messages in the beginning of minutes and hours. As these fluctuations among seconds and minutes were not observed in email lists (or other networks, as far as authors know), a hypothesis arises: the tasks at hand and the culture and socioeconomic factors makes timing more prominent. \aai\ itself is time-focused.}\label{fig:histSecMin}
+    \caption{\small Histogram of activity in \aab\ along seconds and minutes. A strong 15 minutes pattern is visible in (a). The same pattern is apparent in all present histograms, although less incisive. This pattern was not found in mailing lists~\cite{rc1}, where distribution of activity along seconds and minutes was more homogeneous than Numpy uniform distribution simulator. In \aab\ the scene is the opposite: while simulations delivers $\tau=\frac{max[count(i)]}{min[count(i)]}\approx1.38$(a) and $\approx 1.26$ (b), shouts present $\tau=1.47$ and $\tau=1.48$, seconds for (a) and (b), and$\tau=2.32$ and $\tau=1.58$, minutes for (a) and (b). Means are considerably bellow $29.5$, which might indicate a tendency to shout messages in the beginning of minutes and hours. As these fluctuations among seconds and minutes were not observed in email lists (or other networks, as far as authors know), a hypothesis arises: the tasks at hand and the culture and socioeconomic factors makes timing more prominent. \aai\ itself is time-focused.}\label{fig:histSecMin}
 \end{figure}
 
 
