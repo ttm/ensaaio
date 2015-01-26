@@ -38,6 +38,18 @@
 \usepackage[T1]{fontenc} % Required for accented characters
 \linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
 \usepackage{etoolbox}
+\newcommand{\githubi}{Git\textsc{h}ub}
+\newcommand{\bdoh}{{\sc b}lack {\sc d}uck {\sc o}pen \textsc{hub}}
+\newcommand{\ohloh}{\textsc{o}hloh}
+\newcommand{\php}{\textsc{php}}
+\newcommand{\twitter}{\textsc{t}witter}
+\newcommand{\facebook}{\textsc{f}acebook}
+\newcommand{\msn}{\textsc{msn}}
+\newcommand{\gchat}{\textsc{g}oogle \textsc{c}hat}
+\newcommand{\bash}{\textsc{b}ash}
+\newcommand{\python}{\textsc{p}ython}
+\newcommand{\django}{\textsc{d}jango}
+\newcommand{\curl}{c\textsc{url}}
 \newcommand{\firefox}{\textsc{f}irefox}
 \newcommand{\floss}{\textsc{floss}}
 \newcommand{\openoffice}{\textsc{o}pen\textsc{o}ffice}
@@ -53,9 +65,12 @@
 \newcommand{\sectionb}{\textsc{s}ection}
 \newcommand{\cn}{\textsc{cn}}
 \newcommand{\aab}{\textsc{aa}}
+\newcommand{\json}{\textsc{json}}
+\newcommand{\flask}{\textsc{f}lask}
 \newcommand{\aai}{\textsc{Aa}}
 \newcommand{\ontologiaa}{\textsc{o}ntologi\textsc{aa}}
 \newcommand{\owl}{{\sc owl}}
+\newcommand{\www}{{\sc www}}
 \newcommand{\rdfi}{{\sc Rdf}}
 \newcommand{\mongodb}{{\sc m}ongo{\sc db}}
 \newcommand{\mysql}{{\sc m}y{\sc sql}}
@@ -214,7 +229,7 @@ By far the most important \aab\ related message to date is the ``shout''. Dedica
 
 \subsection{Sessions}\label{sec:usess}
 \aai\ sessions are collections of \aab\ shouts.
-These have had a specific incidence in \aab\ practice:
+These have had incidence in \aab\ practice:
 \begin{itemize}
     \item Shouts within a session were input by user each 15 minutes.
     \item Tolerance for shouts in an ideal session was of $\pm 5$ minutes, considered 15 minutes grid.
@@ -255,59 +270,111 @@ There are at least three perceived deviations from \aab\ paradigm, all most ofte
 \end{itemize}
  \section{Software support}\label{sec:sofsup}
 %\addcontentsline{toc}{section}{Systems and data}
- There are different software support for \aab\ (Section~\ref{sec:ss}). Also,  This section exposes this diversity and their integration, as linked data, both within \aab\ variants and within participatory instances.
+ Different software support for \aab\ is exposed in this section. Section~\ref{sec:data} is dedicated to their integration as linked data, both within \aab\ variants and within participatory instances.
 
-There are mainly three software pieces written to support \aab\ activity. Two of them are a server and client suite each (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}). The third is a fancy dashboard. Automated conversational agents (software [ro]bots) were used as alternative User Interfaces (\ui s), with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia}), and an initiative to make \aab\ available in all chat networks (see Section~\ref{sec:ubi}).
+There are mainly three software pieces written to support \aab\ activity. Two of them are a server and client suite each (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}). The third is a fancy dashboard. Among supplementary software support are an automated conversational agents (software [ro]bots), used as alternative User Interfaces (\ui s), with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia}); and an initiative to make \aab\ available in all chat networks (see Section~\ref{sec:ubi}).
 
 All \aab\ software apparatus is contextualized in Table~\ref{tab:aas}.
-\subsubsection{First \aab: \httpb\ server, \html\ skin and shell client}\label{sec:aaFirst}
-Although deprecated in favor of \aab\ 01, this first \aab\ software presents the most numerous set of functionalities. Client functionalities are:
+
+\subsection{First \aab: \httpb\ server, \html\ skin and shell client}\label{sec:aaFirst}
+Although deprecated in favor of \aab\ 01, this first \aab\ software presents the most numerous set of functionalities. Client was completely designed for GNU/Linux terminal usage, and the  functionalities are:
 \begin{itemize}
-    \item 
+    \item Sending messages to the host.
+    \item Configuration facilities.
+    \item Access to tickets and other software developments facilities.
+    \item Timing to ease \aab\ usage, as described in Sessions~\ref{sec:desf} and~\ref{sec:usess}.
 \end{itemize}
 
 Server functionalities are:
 \begin{itemize}
-    \item
+    \item Receiving shouts and other \aab\ messages through \httpb.
+    \item Registering shouts and other \aab\ messages, received through \httpb, in a \mysql\ database.
 \end{itemize}
 
 Core \html\ skin functionalities are:
 \begin{itemize}
-    \item
+    \item Exhibiting shouts and sessions to other \aab\ users by common \www\ \html\ pages.
+    \item Interaction of \aab\ users for reviews and screencast attachments to sessions.
+\end{itemize}
+
+Full features of the software extrapolates information above and article scope, as do implementation details. Further information of this and other versions of \aab\ are contextualized in Table~\ref{tab:aas}.
+
+Throughout Jul/2011-Mar/2014, first version of \aab, described in this, was used directly of routed from bots (see Section~\ref{sec:lalenia}) and gadgets (Section~\ref{sec:ubi}).
+
+\subsection{\aai\ 0.1}\label{sec:aaFirst}
+Although there was no online \aab\ software support in the months of April and May 2014, there was \aab\ activity, as seen in Figure~\ref{fig:mAct}. This motivated a minimum version of \aab\ to support this visceral usage, that went beyond the software support: \aab\ 0.1~\cite{aa01r}.
+
+This implementation targeted the shout message. The dorsal spine is to register shouts independently. All other characteristics should be left to data mining and user dependent tagging.
+
+Minimum client features:
+\begin{itemize}
+    \item A simple \httpb\ call. Integrated trivially as bash commands, to scripts or bots.
+\end{itemize}
+
+Minimum server features:
+\begin{itemize}
+    \item Receives the shout with an associated nick and registers to a \mongodb\ instance with the time the message arrived.
+    \item Returns all shouts as a string or as \json.
+    \item Heroku \flask\ app, integrated to online \mongodb. All free online services. 
+\end{itemize}
+
+Minimum skin features are part of the server, but listed here for organization:
+\begin{itemize}
+    \item Lightest \html.
+    \item Export as \json.
+\end{itemize}
+
+Full features of the software extrapolates information above and article scope, as do implementation details. Further information of this and other versions of \aab\ are contextualized in Table~\ref{tab:aas}.
+
+
+\subsection{\paaineli}\label{sec:aaPaainel}
+A fancy skin for visualizing \aab\ activity is \paainel. Core features are visualization of:
+\begin{itemize}
+    \item Latest \aab\ shouts.
+    \item Latest \irc\ messages.
+    \item Embedded \bdoh\ (former \ohloh) analytics.
+    \item Latest commits to \lm\ main repositories.
+\end{itemize}
+
+This \django/\python software is written for first \aab\ and has not been adapted to \aab\ 0.1.
+Full features of the software extrapolates article scope, as do implementation details. Further information of this and other flavors of \aab\ software support are contextualized in Table~\ref{tab:aas}.
+
+\subsection{Lalenia interface}\label{sec:lalenia}
+To ease usage of \aab, and enhance social aspects, the lalenia \irc\ bot was used as an \aab\ client. This enabled shouts to be logged by \irc users while on the same channel as lalenia. Core features are:
+\begin{itemize}
+    \item Users on the same channel as lalenia can log \aab\ shouts by using the prefix ``\texttt{;aa }'' to a regular message.
+    \item Returns confirmation that \aab\ was logged to \aab\ system. Returns information about \aab\ and software and concepts if successfully logged. Returns an error message if message not logged.
+    \item Both first version and 0.1 have supybot plug-ins.
+    \item A simple \python\ plug-in~\cite{laleniaPlug} for the well known and powerful supybot~\cite{supybot}.
 \end{itemize}
 
 
-Further information of this and other versions of \aab\ are contextualized in Table~\ref{tab:aas}.
-\subsubsection{\paaineli}\label{sec:aaFirst}
-\subsubsection{\aai\ 01}\label{sec:aa01}
-\subsubsection{Lalenia interface}\label{sec:lalenia}
-\subsubsection{Ubiquitous \aab}\label{sec:ubi}
+\subsubsection{The \#labmacambira@Freenode \irc\ channel log}
+As stated by lalenia, {\tt on \#labmacambira there have been 172554 messages, containing 6964778 characters, 1066138 words, 4202 smileys, and 10181 frowns; 178 of those messages were ACTIONs.  There have been 31906 joins, 680 parts, 31109 quits, 0 kicks, 4 mode changes, and 133 topic changes}.
+
+Within information in lalenia logs, there were found 1,654 \aab\ shouts that were not in either \mysql\ or \mongodb\ databases. Actually, to ease mining, any shout in channel log whose message is identical to any message in all 114,040 messages from \mongodb\ and \mysql\ was discarded. Therefore, there was probably a few more shouts in \#labmarambira \irc\ channel log then what is reported here.
+
+\subsection{Ubiquitous \aab}\label{sec:ubi}
+Following the route posed by \aab\ social network interfaces (see Sections~\ref{sec:lalenia} and~\ref{sec:cl}), the Ubiquitous \aab\ is the expansion to all social networks and, indeed, to any media in which activity can be registered. There are two approaches to ubiquitous \aab:
+\begin{enumerate}
+    \item A software that connects to many messaging services as a bot. One implementation connected to all \irc, \twitter, \gchat, \facebook, email and \msn. This bot usually receives messages and register them as \aab\ shouts, but can have more elaborate communication procedures~\cite{ubiqui}.
+    \item Tags with which messages are binded to \aa\ activity. This automatically enables \aab\ usage in all social platforms. Messages can be mined for reports and other community usage.
+\end{enumerate}
+
+Ubiquitous \aab\ has mythological aspects: is understood as the receiver part of the Yupana, a mythological entity~\cite{yupana} that receives and spreads all things; it is also seen as a necessary step to human unification~\cite{wisaa}.
 
 %\addcontentsline{toc}{subsection}{Software support}
 \begin{table}[!h]
   \centering
   \caption{All considered \aab\ versions and their databases. References marked with $\dagger$ are not operational anymore.}\label{tab:aas}
-  \begin{tabular}{|l|l|l|l|l|l|}\hline
-      {\bf version name} & {\bf main language} & {\bf user interface} & {\bf database} & {\bf git} & {\bf available at} \\\hline\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
-& & & & & \\\hline
+  \begin{tabular}{|l|l|p{2cm}|l|l|l|}\hline
+      {\bf version name} & {\bf main languages} & {\bf user interface} & {\bf database} & {\bf code repository} & {\bf available at} \\\hline\hline
+First \aab & \php, \python, \bash & linux terminal, \html & \mysql & \cite{aafc,aafs} & -//- \\\hline
+\aai\ 0.1 & \python & linux terminal, \httpb & \mongodb & \cite{aa01r} & \cite{aa01c,aa01s} \\\hline
+Lalenia bot & \python & \irc\ & any &\cite{} & \cite{} \\\hline
+Ubiquitous \aab & \python & \irc, \twitter, \gchat, \facebook, email, \msn & any & \url{} & -//- \\\hline
   \end{tabular}
 \end{table}
-
-\subsubsection{The \#labmacambira@Freenode \irc\ channel log}
-\subsubsection{Auxiliary scripts}
-Python script at~\cite{mysqlTri} outputs \rdf\ from a \mysql\ database, mostly from first \aab\ version.
-Python script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from first \aab\ version, to \rdf\ data.
 
 \section{Data}\label{sec:data}
 \subsection{The \ontologiaa\ \owl\ ontology}
@@ -318,6 +385,10 @@ Python script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from f
 
 \subsection{Linkage to other participatory data}
 %\addcontentsline{toc}{subsection}{Linkage to other participatory data}
+
+\subsection{Auxiliary scripts}
+Python script at~\cite{mysqlTri} outputs \rdf\ from a \mysql\ database, mostly from first \aab\ version.
+Python script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from first \aab\ version, to \rdf\ data.
 
 
 \section{Statistics}\label{sec:stats}
@@ -371,7 +442,7 @@ start & 1169 & \\
 \begin{figure}[H]
     \hspace{-25mm}
     \includegraphics[width=1.3\textwidth]{imgs/actHist}
-  \caption{\small The average number of messages each month is $\mu=507.1$, with a standard deviation of $\sigma=336.63 $.}\label{fig:telao2}
+  \caption{\small The average number of messages each month is $\mu=507.1$, with a standard deviation of $\sigma=336.63 $.}\label{fig:mAct}
 \end{figure}
 
 % medida de atividade nos segundos, minutos, horas, dias da semana e do mes. Meses do ano.
@@ -424,6 +495,12 @@ start & 1169 & \\
 \section{Conclusions}\label{sec:con}
 \subsection{Further work}
 \subsection{Acknowledgments}
+Vilson pelas versoes iniciais do aa e do plugin da lalenia.
+karmiac e bzum e andres pelo aa.
+Ricardo Fabbri pelo artigo
+Marcos Mendoça pelo paainel.
+Criadores do supy, django python, numpy e outras ferramentas de mineracao
+
 
 %\addcontentsline{toc}{subsection}{\ontologiaa: the \aab\ ontology}
 %\begin{wrapfigure}{l}{0.4\textwidth} % Inline image example
