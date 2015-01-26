@@ -54,22 +54,35 @@
 \newcommand{\floss}{\textsc{floss}}
 \newcommand{\openoffice}{\textsc{o}pen\textsc{o}ffice}
 \newcommand{\puredata}{\textsc{p}uredata}
+\newcommand{\schema}{\textsc{s}chema.org}
 \newcommand{\wiki}{\textsc{w}iki}
+\newcommand{\nosql}{\textsc{n}o\textsc{sql}}
 \newcommand{\etherpad}{\textsc{e}therpad}
 \newcommand{\irc}{\textsc{irc}}
 \newcommand{\irci}{\textsc{Irc}}
 \newcommand{\ocd}{\textsc{ocd}}
 \newcommand{\participa}{\textsc{p}articipa.br}
 \newcommand{\httpb}{\textsc{http}}
+\newcommand{\foaf}{\textsc{foaf}}
+\newcommand{\ops}{\textsc{ops}}
+\newcommand{\sioc}{\textsc{sioc}}
+\newcommand{\gndo}{\textsc{gndo}}
 \newcommand{\html}{\textsc{html}}
+\newcommand{\ggg}{\textsc{ggg}}
+\newcommand{\opa}{\textsc{opa}}
+\newcommand{\obs}{\textsc{obs}}
+\newcommand{\vbs}{\textsc{vbs}}
+\newcommand{\lod}{\textsc{lod}}
 \newcommand{\nlp}{\textsc{nlp}}
 \newcommand{\sectionb}{\textsc{s}ection}
 \newcommand{\cn}{\textsc{cn}}
 \newcommand{\aab}{\textsc{aa}}
+\newcommand{\dc}{\textsc{d}ublin {\sc c}ore}
 \newcommand{\json}{\textsc{json}}
 \newcommand{\flask}{\textsc{f}lask}
 \newcommand{\aai}{\textsc{Aa}}
 \newcommand{\ontologiaa}{\textsc{o}ntologi\textsc{aa}}
+\newcommand{\ontologiaai}{\textsc{O}ntologi\textsc{aa}}
 \newcommand{\owl}{{\sc owl}}
 \newcommand{\www}{{\sc www}}
 \newcommand{\rdfi}{{\sc Rdf}}
@@ -378,19 +391,46 @@ Ubiquitous \aab ($\dagger$) & \python & \irc, \twitter, \gchat, \facebook, email
 \end{table}
 
 \section{Data}\label{sec:data}
-\subsection{The \ontologiaa\ \owl\ ontology}
-%\addcontentsline{toc}{subsection}{The \ontologiaa\ \owl\ ontology}
+\aai\ data is scattered among different databases and logs (see Section~\ref{sec:sofsup}). A coherent integration of these resources is done by means of a dedicated \owl\ ontology and a mapping routine from relational databases to \rdf\ data.
+
+\subsection{The \ontologiaa\ \owl\ ontology}\label{sec:ont}
+An ontology, in linked data contexts, is a formalization of a specification. The Web Ontology Language (\owl) is a family of languages designed for authoring ontologies. Core uses ontologies include: 1) reasoning by means of ontological specifications; 2) linking data from different sources; and 3) organization of domain knowledge for coherent consideration. For further considerations of ontologies in a context  pertinent to \aab, the reader should visit~\cite{OPS,pnud5}.
+
+For \aab, an ontology eases key usage aspects:
+\begin{itemize}
+    \item Conceptualization of \aab\ is not unique or steady. The ontology delivers a formal paradigm with which community can communicate and develop.
+    \item There is \aab\ related data in different databases, and even in social networks (see Section~\ref{sec:sofsup}). Common classes to which relate data is a sound method for integrating data.
+    \item \aai\ data is integrated to other social participation instances, such as~\cite{participa,cd}, by super-classes and super-properties of the ontology.
+\end{itemize}
+
+Therefore, the \ontologiaa was delivered by \aab\ community.
+
+
+\begin{figure}[!h]
+    \hspace{-3.3cm}
+    \includegraphics[width=1.5\textwidth]{imgs/ontologiaa_}
+    \caption{The \ontologiaa: an \owl\ ontology of \aab. Classes are concepts related by properties. Classes are also related to upper ontologies (\foaf, \dc, \schema, \sioc, \gndo, \ops), as are properties. All properties are functional. Properties with a full line yield existential restrictions to the subjects of the triples suggested by the diagram: {\tt aa:user}, {\tt aa:nick}, {\tt aa:shoutMessage}, {\tt aa:created}. Blue lines mark object properties, while black lines are for data properties. All properties are functional, except for {\tt aa:nick} and {\tt aa:email}. For further information, see Section~\ref{sec:ont}.}.
+    \label{fig:ontologiaa}
+\end{figure}
+
 
 \subsection{\rdfi\ data}
-%\addcontentsline{toc}{subsection}{\rdfi\ data}
+The \aab\ data is currently in relational and \nosql\ databases, and social networks messages to be mined (Section~\ref{sec:sofsup}). By using the same ontological background (see \ontologiaa\ in Section~\ref{sec:ont}), these data can be translated to \rdf\ for integration and linkage.
 
-\subsection{Linkage to other participatory data}
-%\addcontentsline{toc}{subsection}{Linkage to other participatory data}
+Script at~\cite{mysqlTri} outputs \rdf\ from a \mysql\ database, mostly from first \aab\ version.
+Script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from \aab\ 0.1, to \rdf\ data.
+Script at~\cite{ircTri} transcribes a shouts from \irc\ logs, mostly from first \aab\ version, to \rdf\ data.
 
-\subsection{Auxiliary scripts}
-Python script at~\cite{mysqlTri} outputs \rdf\ from a \mysql\ database, mostly from first \aab\ version.
-Python script at~\cite{mongoTri} transcribes a \mongodb\ database, mostly from first \aab\ version, to \rdf\ data.
 
+
+\subsection{Linkage to external data}
+The usage of \rdf\ and \owl\ protocols enables linked data facilities. \ontologiaai\ (and thus all \aab\ data) is integrated in two instances of special interest:
+\begin{itemize}
+    \item Through \ops, \aab\ data is linked to \opa, \obs, \vbs, and \ocd. These are Brazilian ontologies, with social participation focus, that has been used for data representation and conceptual studies~\cite{pnud5}.
+    \item Through all other ontologies (e.g. \foaf, \dc, \schema, \sioc), \aab\ data is linked to relevant portions of the Giant Global Graph (\ggg) of Linked Open Data (\lod)~\cite{LOD}.
+\end{itemize}
+
+Gives meaning to data while easing data discovery and comparative analysis, to point a few of the advantages of such an approach~\cite{linkedDataBook}.
 
 \section{Statistics}\label{sec:stats}
 %\addcontentsline{toc}{section}{Data statistics}
@@ -500,6 +540,7 @@ Vilson pelas versoes iniciais do aa e do plugin da lalenia.
 karmiac e bzum e andres pelo aa.
 Ricardo Fabbri pelo artigo
 Marcos Mendoça pelo paainel.
+Felipe Machado, por atribuir a responsabilidade de erigir um sistema de co-working nos idos tempos de 2009.
 Criadores do supy, django python, numpy e outras ferramentas de mineracao
 
 
