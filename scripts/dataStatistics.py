@@ -179,103 +179,149 @@ def cDiff(vetor,bins_):
     h1=n.histogram(vetor,bins=bins_)[0]
     return max(h1)/float(min(h1))
 # segundos do minuto
-s1=[i.second for i in shT__]
-ms1=n.mean(s1)
-ds1=n.std(s1)
-Ms1=cDiff(s1,n.arange(61))
-p.subplot(611)
-p.hist(s1,bins=n.arange(61),normed=1)
-p.title("activity in each second (a)")
-s2=[i.second for i in shT2__]
-ms2=n.mean(s2)
-ds2= n.std(s2)
-p.subplot(612)
-p.hist(s2,bins=n.arange(61),normed=1)
-p.title("activity in each second (b)")
-Ms2=cDiff(s2,n.arange(61))
-# minutos da hora
-m1=[i.minute for i in shT__]
-mm1=n.mean(m1)
-dm1=n.std(m1)
-Mm1=cDiff(m1,n.arange(61))
-p.subplot(613)
-p.hist(m1,bins=n.arange(61),normed=1)
-p.title("activity in each minute (a)")
-m2=[i.minute for i in shT2__]
-mm2=n.mean(m2)
-dm2= n.std(m2)
-Mm2=cDiff(m2,n.arange(61))
-p.subplot(614)
-p.hist(m2,bins=n.arange(61),normed=1)
-p.title("activity in each minute (b)")
-
-# distribuicao uniforme
-u1=n.random.random_integers(0,59,len(s1))
-mu1=n.mean(u1)
-du1= n.std(u1)
-Mu1= cDiff(u1,n.arange(61))
-p.subplot(615)
-p.hist(u1,bins=n.arange(61),normed=1)
-p.title("Uniform distribution simulation (a)")
-u2=n.random.random_integers(0,59,len(s2))
-mu2=n.mean(u2)
-du2= n.std(u2)
-Mu2= cDiff(u2,n.arange(61))
-p.subplot(616)
-p.hist(u2,bins=n.arange(61),normed=1)
-p.title("Uniform distribution simulation (b)")
-p.show()
-
-# horas do dia
-h1=[i.hour for i in shT__]
-mh1=n.mean(h1)
-def GG(nn):
-    if abs(nn-mh1)>12:
-        return 24-abs(nn-mh1) 
-    else:
-        return abs(nn-mh1)
-dh1__=n.array([GG(i) for i in h1])
-dh1=((dh1__**2.)/len(dh1__))**0.5
-Mh1=cDiff(h1,n.arange(25))
-h2=[i.hour for i in shT2__]
-mh2=n.mean(h2)
-def GG(nn):
-    if abs(nn-mh2)>12:
-        return 24-abs(nn-mh2) 
-    else:
-        return abs(nn-mh2)
-dh2__=n.array([GG(i) for i in h2])
-dh2=((dh2__**2.)/len(dh2__))**0.5
-Mh2=cDiff(h2,n.arange(25))
-
-p.subplot(411)
-p.hist(h1,bins=n.arange(25),normed=1)
-p.title("activity in each hour (a)")
-Mh1=cDiff(h1,n.arange(25))
-p.subplot(412)
-p.hist(h2,bins=n.arange(25),normed=1)
-p.title("activity in each hour (b)")
-Mh2=cDiff(h2,n.arange(25))
-# distribuicao uniforme
-u1=n.random.random_integers(0,23,len(h1))
-mu1=n.mean(u1)
-du1= n.std(u1)
-Mu1= cDiff(u1,n.arange(25))
-p.subplot(413)
-p.hist(u1,bins=n.arange(25),normed=1)
-p.title("Uniform distribution simulation (a)")
-u2=n.random.random_integers(0,23,len(h2))
-mu2=n.mean(u2)
-du2= n.std(u2)
-Mu2= cDiff(u2,n.arange(25))
-p.subplot(414)
-p.hist(u2,bins=n.arange(25),normed=1)
-p.title("Uniform distribution simulation (b)")
-p.show()
-
-
+#s1=[i.second for i in shT__]
+#ms1=n.mean(s1)
+#ds1=n.std(s1)
+#Ms1=cDiff(s1,n.arange(61))
+#p.subplot(611)
+#p.hist(s1,bins=n.arange(61),normed=1)
+#p.title("activity in each second (a)")
+#s2=[i.second for i in shT2__]
+#ms2=n.mean(s2)
+#ds2= n.std(s2)
+#p.subplot(612)
+#p.hist(s2,bins=n.arange(61),normed=1)
+#p.title("activity in each second (b)")
+#Ms2=cDiff(s2,n.arange(61))
+## minutos da hora
+#m1=[i.minute for i in shT__]
+#mm1=n.mean(m1)
+#dm1=n.std(m1)
+#Mm1=cDiff(m1,n.arange(61))
+#p.subplot(613)
+#p.hist(m1,bins=n.arange(61),normed=1)
+#p.title("activity in each minute (a)")
+#m2=[i.minute for i in shT2__]
+#mm2=n.mean(m2)
+#dm2= n.std(m2)
+#Mm2=cDiff(m2,n.arange(61))
+#p.subplot(614)
+#p.hist(m2,bins=n.arange(61),normed=1)
+#p.title("activity in each minute (b)")
+#
+## distribuicao uniforme
+#u1=n.random.random_integers(0,59,len(s1))
+#mu1=n.mean(u1)
+#du1= n.std(u1)
+#Mu1= cDiff(u1,n.arange(61))
+#p.subplot(615)
+#p.hist(u1,bins=n.arange(61),normed=1)
+#p.title("Uniform distribution simulation (a)")
+#u2=n.random.random_integers(0,59,len(s2))
+#mu2=n.mean(u2)
+#du2= n.std(u2)
+#Mu2= cDiff(u2,n.arange(61))
+#p.subplot(616)
+#p.hist(u2,bins=n.arange(61),normed=1)
+#p.title("Uniform distribution simulation (b)")
+#p.show()
+#
+## horas do dia
+#h1=[i.hour for i in shT__]
+#mh1=n.mean(h1)
+#def GG(nn):
+#    if abs(nn-mh1)>12:
+#        return 24-abs(nn-mh1) 
+#    else:
+#        return abs(nn-mh1)
+#dh1__=n.array([GG(i) for i in h1])
+#dh1=((dh1__**2.)/len(dh1__))**0.5
+#Mh1=cDiff(h1,n.arange(25))
+#h2=[i.hour for i in shT2__]
+#mh2=n.mean(h2)
+#def GG(nn):
+#    if abs(nn-mh2)>12:
+#        return 24-abs(nn-mh2) 
+#    else:
+#        return abs(nn-mh2)
+#dh2__=n.array([GG(i) for i in h2])
+#dh2=((dh2__**2.)/len(dh2__))**0.5
+#Mh2=cDiff(h2,n.arange(25))
+#
+#p.subplot(411)
+#p.hist(h1,bins=n.arange(25),normed=1)
+#p.title("activity in each hour (a)")
+#Mh1=cDiff(h1,n.arange(25))
+#p.subplot(412)
+#p.hist(h2,bins=n.arange(25),normed=1)
+#p.title("activity in each hour (b)")
+#Mh2=cDiff(h2,n.arange(25))
+## distribuicao uniforme
+#u1=n.random.random_integers(0,23,len(h1))
+#mu1=n.mean(u1)
+#du1= n.std(u1)
+#Mu1= cDiff(u1,n.arange(25))
+#p.subplot(413)
+#p.hist(u1,bins=n.arange(25),normed=1)
+#p.title("Uniform distribution simulation (a)")
+#u2=n.random.random_integers(0,23,len(h2))
+#mu2=n.mean(u2)
+#du2= n.std(u2)
+#Mu2= cDiff(u2,n.arange(25))
+#p.subplot(414)
+#p.hist(u2,bins=n.arange(25),normed=1)
+#p.title("Uniform distribution simulation (b)")
+#p.show()
 
 # dias da semana
+w1=[i.weekday() for i in shT__]
+mw1=n.mean(w1)
+def GG(nn):
+    if abs(nn-mw1)>3:
+        return 7-abs(nn-mw1) 
+    else:
+        return abs(nn-mw1)
+dw1__=n.array([GG(i) for i in w1])
+dw1=((dw1__**2.)/len(dw1__))**0.5
+Mw1=cDiff(w1,n.arange(25))
+w2=[i.weekday() for i in shT2__]
+mw2=n.mean(w2)
+def GG(nn):
+    if abs(nn-mw2)>12:
+        return 24-abs(nn-mw2) 
+    else:
+        return abs(nn-mw2)
+dw2__=n.array([GG(i) for i in w2])
+dw2=((dw2__**2.)/len(dw2__))**0.5
+Mw2=cDiff(w2,n.arange(25))
+
+p.subplot(411)
+p.hist(w1,bins=n.arange(8),normed=1)
+p.title("activity in each weekday (a)")
+Mh1=cDiff(w1,n.arange(8))
+p.subplot(412)
+p.hist(w2,bins=n.arange(8),normed=1)
+p.title("activity in each weekday (b)")
+Mw2=cDiff(w2,n.arange(8))
+# distribuicao uniforme
+u1=n.random.random_integers(0,6,len(w1))
+mu1=n.mean(u1)
+du1= n.std(u1)
+Mu1= cDiff(u1,n.arange(8))
+p.subplot(413)
+p.hist(u1,bins=n.arange(8),normed=1)
+p.title("Uniform distribution simulation (a)")
+u2=n.random.random_integers(0,6,len(w2))
+mu2=n.mean(u2)
+du2= n.std(u2)
+Mu2= cDiff(u2,n.arange(8))
+p.subplot(414)
+p.hist(u2,bins=n.arange(8),normed=1)
+p.title("Uniform distribution simulation (b)")
+p.show()
+
+
+
 # dias do mes
 # meses do ano
 
