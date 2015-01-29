@@ -283,7 +283,7 @@ def GG(nn):
         return abs(nn-mw1)
 dw1__=n.array([GG(i) for i in w1])
 dw1=((dw1__**2.)/len(dw1__))**0.5
-Mw1=cDiff(w1,n.arange(25))
+Mw1=cDiff(w1,n.arange(8))
 w2=[i.weekday() for i in shT2__]
 mw2=n.mean(w2)
 def GG(nn):
@@ -293,12 +293,13 @@ def GG(nn):
         return abs(nn-mw2)
 dw2__=n.array([GG(i) for i in w2])
 dw2=((dw2__**2.)/len(dw2__))**0.5
-Mw2=cDiff(w2,n.arange(25))
+Mw2=cDiff(w2,n.arange(8))
 
 p.subplot(411)
 p.hist(w1,bins=n.arange(8),normed=1)
 p.title("activity in each weekday (a)")
-Mh1=cDiff(w1,n.arange(8))
+Mw1=cDiff(w1,n.arange(8))
+p.xticks([])
 p.subplot(412)
 p.hist(w2,bins=n.arange(8),normed=1)
 p.title("activity in each weekday (b)")
@@ -308,6 +309,7 @@ u1=n.random.random_integers(0,6,len(w1))
 mu1=n.mean(u1)
 du1= n.std(u1)
 Mu1= cDiff(u1,n.arange(8))
+p.xticks([])
 p.subplot(413)
 p.hist(u1,bins=n.arange(8),normed=1)
 p.title("Uniform distribution simulation (a)")
@@ -315,13 +317,68 @@ u2=n.random.random_integers(0,6,len(w2))
 mu2=n.mean(u2)
 du2= n.std(u2)
 Mu2= cDiff(u2,n.arange(8))
+p.xticks([])
 p.subplot(414)
 p.hist(u2,bins=n.arange(8),normed=1)
 p.title("Uniform distribution simulation (b)")
+p.xticks(n.arange(7)+0.5,["mon","tue","wed","thu","fri","sat","sun"])
+p.subplots_adjust(left=0.07,bottom=0.05,right=0.97,top=0.92,hspace=0.34)
+p.show()
+
+# dias do mes
+d1=[i.day for i in shT__]
+md1=n.mean(d1)
+def GG(nn):
+    if abs(nn-md1)>15:
+        return 30-abs(nn-md1) 
+    else:
+        return abs(nn-md1)
+dd1__=n.array([GG(i) for i in d1])
+dd1=((dd1__**2.)/len(dd1__))**0.5
+Md1=cDiff(d1,n.arange(33))
+d2=[i.day for i in shT2__]
+md2=n.mean(d2)
+def GG(nn):
+    if abs(nn-md2)>15:
+        return 30-abs(nn-md2) 
+    else:
+        return abs(nn-md2)
+dd2__=n.array([GG(i) for i in d2])
+dd2=((dd2__**2.)/len(dd2__))**0.5
+Md2=cDiff(d2,n.arange(33))
+
+p.subplot(411)
+p.hist(d1,bins=n.arange(33),normed=1)
+p.title("activity in days along the month (a)")
+Md1=cDiff(d1,n.arange(1,31))
+#p.xticks([])
+p.subplot(412)
+p.hist(d2,bins=n.arange(33),normed=1)
+p.title("activity in days along the month (b)")
+Md2=cDiff(d2,n.arange(1,31))
+# distribuicao uniforme
+u1=n.random.random_integers(0,29,len(d1))+1
+mu1=n.mean(u1)
+du1= n.std(u1)
+Mu1= cDiff(u1,n.arange(30)+1)
+#p.xticks([])
+p.subplot(413)
+p.hist(u1,bins=n.arange(33),normed=1)
+p.title("Uniform distribution simulation (a)")
+u2=n.random.random_integers(0,29,len(d2))+1
+mu2=n.mean(u2)
+du2= n.std(u2)
+Mu2= cDiff(u2,n.arange(30)+1)
+#p.xticks([])
+p.subplot(414)
+p.hist(u2,bins=n.arange(33),normed=1)
+p.title("Uniform distribution simulation (b)")
+#p.xticks(n.arange(7)+0.5,["mon","tue","wed","thu","fri","sat","sun"])
+p.subplots_adjust(left=0.07,bottom=0.05,right=0.97,top=0.94,hspace=0.46)
 p.show()
 
 
 
-# dias do mes
+
 # meses do ano
 
