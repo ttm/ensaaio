@@ -491,20 +491,26 @@ users=[]
 nicks=um_.keys()
 UM={}
 for nick in nicks:
+    passme=0
     for aa in AA:
         if nick in aa:
             nick_=aa[0]
+            passme=1
+    if not passme:
+        nick_=nick
     if nick_ not in UM.keys():
         UM[nick_]=um_[nick]
     else:
         UM[nick_]+=um_[nick]
 for sh in shLL_:
     nick=sh[1]
+    passme=0
     for aa in AA:
         if nick in aa:
             nick_=aa[0]
-        else:
-            nick_=nick
+            passme=1
+    if not passme:
+        nick_=nick
     if nick_ not in UM.keys():
         UM[nick_]=[sh]
     else:
@@ -517,30 +523,61 @@ aa_=[i[1] for i in aa]
 aac=list(set(aa_)); aac.sort()
 cc=[aa_.count(i) for i in aac]
 
+total=sum([i[1] for i in aa])
+
 # histogramas dos usuarios
-bins=[] # localizacao baseia-se em aac, largura depende da contagem
-vals=[] # baseia-se em cc dividido pelo ambito
-
-# minimo de um usuario por barra:
-p.bar(aac,cc)
-p.show()
-
-for i in xrange(len(cc)):
-    bins.append(aac[i])
-bins.append(int(aac[-1]+(aac[-1]-aac[-2])*(float(aac[-1]-aac[-2])/(aac[-2]-aac[-3]))))
-for i in xrange(len(cc)):
-    vals.append(cc[i]/float(bins[i+1]-bins[i]))
-p.hist(aa_,bins)
-p.show()
-
-p.hist(aac, weights=vals, bins=bins)
-p.show()
-
-p.hist(n.log(aac), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
-p.show()
-
-
-# minimo de dois usuarios por barra:
+#bins=[] # localizacao baseia-se em aac, largura depende da contagem
+#vals=[] # baseia-se em cc dividido pelo ambito
+#
+## minimo de um usuario por barra:
+#p.bar(aac,cc)
+#p.show()
+#
+#for i in xrange(len(cc)):
+#    bins.append(aac[i])
+#bins.append(int(aac[-1]+(aac[-1]-aac[-2])*(float(aac[-1]-aac[-2])/(aac[-2]-aac[-3]))))
+#for i in xrange(len(cc)):
+#    vals.append(cc[i]/float(bins[i+1]-bins[i]))
+#p.hist(aa_,bins)
+#p.show()
+#
+#p.hist(aac, weights=vals, bins=bins)
+#p.show()
+#
+#p.hist(n.log(aac), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
+#p.show()
+#
+#
+## minimo de dois usuarios por barra:
+#vals=[]
+#bins=[]
+#i=0
+#j=0
+#bins.append(aac[0])
+#aac_=[]
+#while i < len(cc)-2:
+#    if cc[i]>=2:
+#        bins.append(aac[i+1])
+#        vals.append(cc[i]/float(bins[j+1]-bins[j]))
+#        aac_.append(aac[i])
+#        i+=1
+#    else:
+#        bins.append(aac[i+2])
+#        vals.append((cc[i]+cc[i+1])/float(bins[j+1]-bins[j]))
+#        aac_.append(aac[i+1])
+#        i+=2
+#    j+=1
+#bins.append(int(bins[-1]+(bins[-1]-bins[-2])*(float(bins[-1]-bins[-2])/(bins[-2]-bins[-3]))))
+##vals.append(2./(bins[-1]-bins[-2]))
+##aac_.append(aac[-1])
+#
+#p.hist(aac_, weights=vals, bins=bins)
+#p.show()
+#
+#p.hist(n.log(aac_), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
+#p.xlabel("log(|shouts|)")
+#p.ylabel("log(|users|*20000)")
+#p.show()
 
 
 
