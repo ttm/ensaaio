@@ -1,10 +1,9 @@
 #!/usr/bin/python                                                      
 #-*- coding: utf-8 -*-                                                 
-import rdflib as r
+import rdflib as r, numpy as n, nltk as k
 from SPARQLWrapper import SPARQLWrapper, JSON
-import sys, time, cPickle as pickle, numpy as n, datetime
-import pylab as p
-import matplotlib.pyplot as pp
+import sys, time, cPickle as pickle, datetime, string
+import pylab as p, matplotlib.pyplot as pp
 T=time.time()
 ##############################
 f=open("./pickle/dicts.pickle", 'rb')
@@ -518,12 +517,12 @@ for sh in shLL_:
 
 act=[(i,len(UM[i])) for i in UM.keys()]
 
-aa=sorted(act,key=lambda x: x[1])
-aa_=[i[1] for i in aa]
-aac=list(set(aa_)); aac.sort()
-cc=[aa_.count(i) for i in aac]
-
-total=sum([i[1] for i in aa])
+#aa=sorted(act,key=lambda x: x[1])
+#aa_=[i[1] for i in aa]
+#aac=list(set(aa_)); aac.sort()
+#cc=[aa_.count(i) for i in aac]
+#
+#total=sum([i[1] for i in aa])
 
 # histogramas dos usuarios
 #bins=[] # localizacao baseia-se em aac, largura depende da contagem
@@ -579,8 +578,118 @@ total=sum([i[1] for i in aa])
 #p.ylabel("log(|users|*20000)")
 #p.show()
 
+def cleanShout(shout):
+    if shout.startswith("shout "):
+        return shout[6:].strip()
+    if shout.startswith("alert "):
+        return shout[6:].strip()
+    return shout
+
+# todas as mensagens:
+shms=[cleanShout(shd_[i][0]) for i in shd_.keys()]
+
+# tudo junto:
+print "Aqui"
+print T- time.time(); T=time.time()
+shmT=string.join(shms).encode("utf8")
+print T- time.time(); T=time.time()
+tokens=shmT.split()
+print T- time.time(); T=time.time()
+tokens_=set(tokens)
+#print T- time.time(); T=time.time()
+#tcount=[(i,tokens.count(i)) for i in tokens_]
+#print T- time.time(); T=time.time()
+#tcountS=sorted(tcount,key=lambda x: x[1])
+#print T- time.time(); T=time.time()
+thist=k.FreqDist(tokens)
+#thist.tabulate()
+
+aa_=[thist[i] for i in thist.keys()]
+aac=list(set(aa_)); aac.sort()
+cc=[aa_.count(i) for i in aac]
+
+total=sum(aa_)
 
 
+vals=[]
+bins=[]
+i=0
+j=0
+bins.append(aac[0])
+aac_=[]
+while i < len(cc)-2:
+    if cc[i]>=2:
+        bins.append(aac[i+1])
+        vals.append(cc[i]/float(bins[j+1]-bins[j]))
+        aac_.append(aac[i])
+        i+=1
+    else:
+        bins.append(aac[i+2])
+        vals.append((cc[i]+cc[i+1])/float(bins[j+1]-bins[j]))
+        aac_.append(aac[i+1])
+        i+=2
+    j+=1
+bins.append(int(bins[-1]+(bins[-1]-bins[-2])*(float(bins[-1]-bins[-2])/(bins[-2]-bins[-3]))))
+#vals.append(2./(bins[-1]-bins[-2]))
+#aac_.append(aac[-1])
+
+#p.hist(aac_, weights=vals, bins=bins)
+#p.show()
+
+p.subplot(211)
+#p.hist(n.log(aac_), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
+p.hist(n.log(aac_), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
+p.xlabel("log(incidences)")
+p.ylabel("log(|tokens|*20000)")
+p.title("Histogram of tokens")
+#p.show()
+
+stop=set(k.corpus.stopwords.words('portuguese')).union(set(string.punctuation)).union(set(k.corpus.stopwords.words("english")))
+tokensB=[i for i in tokens if ((i not in stop) and (not i.startswith("http://")))]
+tokensB_=set(tokensB)
+
+thistB=k.FreqDist(tokensB)
+aa_=[thistB[i] for i in thistB.keys()]
+aac=list(set(aa_)); aac.sort()
+cc=[aa_.count(i) for i in aac]
+
+total=sum(aa_)
 
 
+vals=[]
+bins=[]
+i=0
+j=0
+bins.append(aac[0])
+aac_=[]
+while i < len(cc)-2:
+    if cc[i]>=2:
+        bins.append(aac[i+1])
+        vals.append(cc[i]/float(bins[j+1]-bins[j]))
+        aac_.append(aac[i])
+        i+=1
+    else:
+        bins.append(aac[i+2])
+        vals.append((cc[i]+cc[i+1])/float(bins[j+1]-bins[j]))
+        aac_.append(aac[i+1])
+        i+=2
+    j+=1
+bins.append(int(bins[-1]+(bins[-1]-bins[-2])*(float(bins[-1]-bins[-2])/(bins[-2]-bins[-3]))))
+#vals.append(2./(bins[-1]-bins[-2]))
+#aac_.append(aac[-1])
 
+#p.hist(aac_, weights=vals, bins=bins)
+#p.show()
+p.subplot(212)
+
+#p.hist(n.log(aac_), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
+p.hist(n.log(aac_), weights=n.log(n.array(vals)*20000), bins=n.log(bins))
+p.xlabel("log(incidences)")
+p.ylabel("log(|tokens|*20000)")
+p.title("Histogram of tokens with greater semantic meaning")
+p.show()
+
+# tabela de tokens com: palavras mais incidentes, tamanho medio da palavra, desvio do tamanho da palavra, numero de URLs, numero de stopwords, numero de pontuacoes, numero de tokens ao total, etc.
+
+# analisar sessions
+# analisar caracteres, aos moldes do feito do machado de assis.
