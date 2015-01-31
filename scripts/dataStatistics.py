@@ -645,7 +645,7 @@ p.title("Histogram of tokens")
 #p.show()
 
 stop=set(k.corpus.stopwords.words('portuguese')).union(set(string.punctuation)).union(set(k.corpus.stopwords.words("english")))
-tokensB=[i for i in tokens if ((i not in stop) and (not i.startswith("http://")))]
+tokensB=[i for i in tokens if ((i not in stop) and (not i.startswith("http://")) and (not i.startswith("https://")))]
 tokensB_=set(tokensB)
 
 thistB=k.FreqDist(tokensB)
@@ -690,6 +690,36 @@ p.title("Histogram of tokens with greater semantic meaning")
 p.show()
 
 # tabela de tokens com: palavras mais incidentes, tamanho medio da palavra, desvio do tamanho da palavra, numero de URLs, numero de stopwords, numero de pontuacoes, numero de tokens ao total, etc.
+thistBS=sorted(thistB.items(),key=lambda x: x[1])
+print thistBS[-30:]
 
-# analisar sessions
+stemmer = k.stem.RSLPStemmer()
+print("hey %2.f"%(time.time()-T,)); T=time.time()
+tokensC=[stemmer.stem(i.decode("utf8")).encode("utf8") for i in tokens if ((i not in stop) and (not i.startswith("http://")))]
+print("hey %2.f"%(time.time()-T,)); T=time.time()
+tokensC_=set(tokensC)
+print("hey %2.f"%(time.time()-T,)); T=time.time()
+
+thistC=k.FreqDist(tokensC)
+print("hey %2.f"%(time.time()-T,)); T=time.time()
+thistCS=sorted(thistC.items(),key=lambda x: x[1])
+
+# analisar shouts
+# analisar sessions (?)
 # analisar caracteres, aos moldes do feito do machado de assis.
+ttok=[len(i) for i in tokensB]
+ttok_=[len(i) for i in tokensB_]
+mt=n.mean(ttok)
+dt=n.std(ttok)
+print("media de tamanho de token:%.2f, desvio: %.2f"%(mt, dt))
+
+mt=n.mean(ttok)
+dt=n.std(ttok)
+print("media de tamanho de token existente:%.2f, desvio: %.2f"%(mt, dt))
+bins=range(max(ttok_)+2)
+p.hist(ttok, bins,normed=True,alpha=0.5,label="incident")
+p.hist(ttok_,bins,normed=True,alpha=0.5,label="existential")
+#p.ylim(0,0.25)
+p.xlim(0,max(ttok_)+2)
+#-->    p.legend(loc="upper right")
+p.show()
