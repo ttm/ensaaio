@@ -588,14 +588,45 @@ def cleanShout(shout):
 # todas as mensagens:
 shms=[cleanShout(shd_[i][0]) for i in shd_.keys()]
 
+sent_tokenizer=k.data.load('tokenizers/punkt/portuguese.pickle')
+
 # tudo junto:
 print "Aqui"
 print T- time.time(); T=time.time()
 shmT=string.join(shms).encode("utf8")
 print T- time.time(); T=time.time()
-tokens=shmT.split()
+tokensFoo=shmT.split()
 print T- time.time(); T=time.time()
+tokensFoo_=set(tokensFoo)
+
+ht=[i for i in tokensFoo if i.startswith("http")]
+ht_=[]
+for i in set(ht):
+    ht_.append(i)
+    ht_.append("\n")
+f=open("../data/linksAA.txt","wb")
+f.writelines(ht_)
+f.close()
+
+
+for iht in ht:
+    if iht.endswith(","):
+        iht_=iht[:-1]
+    elif iht.endswith("."):
+        iht_=iht[:-1]
+    elif iht.endswith(";"):
+        iht_=iht[:-1]
+    else:
+        iht_=iht
+    shmT_=shmT.replace(iht_,"")
+tokens=k.word_tokenize(shmT_)
 tokens_=set(tokens)
+        
+    
+sentences=[]
+for shout in shms:
+    sentences+=sent_tokenizer.tokenize(shout)
+
 #print T- time.time(); T=time.time()
 #tcount=[(i,tokens.count(i)) for i in tokens_]
 #print T- time.time(); T=time.time()
@@ -705,14 +736,17 @@ print("hey %2.f"%(time.time()-T,)); T=time.time()
 thistCS=sorted(thistC.items(),key=lambda x: x[1])
 
 # numero de URLs, numero de stopwords, numero de pontuacoes, numero de tokens ao total, etc.
-ht=[i for i in tokens if i.startswith("http")]
-ht_=[]
-for i in ht:
-    ht_.append(i)
-    ht_.append("\n")
-f=open("linksAA.txt","wb")
-f.writelines(ht_)
-f.close()
+stopN=set(k.corpus.stopwords.words('portuguese'))
+stopN2=set(k.corpus.stopwords.words("english"))
+punctN=set(string.punctuation)
+
+tokensN=[i for i in tokens if i in stopN]
+tokensN2=[i for i in tokens if i in stopN2]
+punctsN=[i for i in tokens if i in punctN]
+
+# tokens por shout
+
+
 
 # analisar shouts
 # analisar sessions (?)
