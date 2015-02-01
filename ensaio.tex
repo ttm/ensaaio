@@ -545,8 +545,8 @@ Most active user (v1z) is responsible for 22.53\% of all activity and the two mo
 
 \begin{figure}[H]
     \hspace{-25mm}
-    \includegraphics[width=1.3\textwidth]{imgs/tokenSizeHist}
-  \caption{\small Histogram of incident and existent token size.}\label{fig:tH}
+    \includegraphics[width=1.3\textwidth]{imgs/diffHist}
+  \caption{\small Histogram of incident and existent token size. Top histogram considers all tokens. Middle histogram considers tokens which are not punctuations, \url s or stopwords (Portuguese and English). Bottom histogram considers all radicals from tokens used for middle histogram.}\label{fig:dH}
 \end{figure}
 
 
@@ -601,6 +601,7 @@ $\sigma [\frac{\textrm{number of chars}}{existent token}]$ & 6.62 \\\hline
 \subsection{\aai, \ocd, and \participa}
 
 \section{Results}\label{sec:res}
+Although a weak evidence, the closer fit to natural predictions of using all tokens, including \url s and punctuations, instead of only a canonical set of words, raises the hypothesis that these elements are shares some levels of meaning with ordinary words, at least in virtual environments.
 
 \section{Conclusions}\label{sec:con}
 \subsection{Further work}

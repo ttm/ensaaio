@@ -707,8 +707,9 @@ thistCS=sorted(thistC.items(),key=lambda x: x[1])
 # analisar shouts
 # analisar sessions (?)
 # analisar caracteres, aos moldes do feito do machado de assis.
-ttok=[len(i) for i in tokensB]
-ttok_=[len(i) for i in tokensB_]
+# histogramas para tokens, 
+ttok=[len(i) for i in tokens]
+ttok_=[len(i) for i in tokens_]
 mt=n.mean(ttok)
 dt=n.std(ttok)
 print("media de tamanho de token:%.2f, desvio: %.2f"%(mt, dt))
@@ -717,10 +718,55 @@ mt=n.mean(ttok)
 dt=n.std(ttok)
 print("media de tamanho de token existente:%.2f, desvio: %.2f"%(mt, dt))
 bins=range(max(ttok_)+2)
+p.subplot(311)
 h1=p.hist(ttok, bins,normed=True,alpha=0.5,label="incident")
 h2=p.hist(ttok_,bins,normed=True,alpha=0.5,label="existential")
 #p.ylim(0,0.25)
-p.xlim(0,max(ttok_)+2)
+p.xlim(0,max(ttok_)+2)
+p.xlim(0,50)
 p.legend(loc="upper right")
-p.title(r"Size histogram of tokens thar are not punctuations, URLs, or Portuguese or English stopwords. $\sum |incident - existential| =$ %.2f)"%(n.abs(h1[0]-h2[0]).sum(),))
+p.title(r"Size histogram of tokens. $\sum |incident - existential| =$ %.2f)"%(n.abs(h1[0]-h2[0]).sum(),))
+
+# tokens selecionados
+ttokB=[len(i) for i in tokensB]
+ttokB_=[len(i) for i in tokensB_]
+mtB=n.mean(ttokB)
+dtB= n.std(ttokB)
+print("media de tamanho de token:%.2f, desvio: %.2f"%(mtB, dtB))
+
+mtB_=n.mean(ttokB_)
+dtB_= n.std(ttokB_)
+print("media de tamanho de token existente:%.2f, desvio: %.2f"%(mtB_, dtB_))
+bins=range(max(ttokB_)+2)
+p.subplot(312)
+h1=p.hist(ttokB, bins,normed=True,alpha=0.5,label="incident")
+h2=p.hist(ttokB_,bins,normed=True,alpha=0.5,label="existential")
+#p.ylim(0,0.25)
+#p.xlim(0,max(ttokB_)+2)
+p.xlim(0,50)
+p.legend(loc="upper right")
+p.title(r"Size histogram of tokens that are not punctuations, URLs, or Portuguese or English stopwords. $\sum |incident - existential| =$ %.2f)"%(n.abs(h1[0]-h2[0]).sum(),))
+
+# tokens radicalizados
+ttokC=[len(i) for i in  tokensC]
+ttokC_=[len(i) for i in tokensC_]
+mtC=n.mean(ttokC)
+dtC= n.std(ttokC)
+print("media de tamanho de token:%.2f, desvio: %.2f"%(mtC, dtC))
+
+mtC_=n.mean(ttokC_)
+dtC_= n.std(ttokC_)
+print("media de tamanho de token existente:%.2f, desvio: %.2f"%(mtC_, dtC_))
+bins=range(max(ttokC_)+2)
+p.subplot(313)
+h1=p.hist(ttokC, bins,normed=True,alpha=0.5,label="incident")
+h2=p.hist(ttokC_,bins,normed=True,alpha=0.5,label="existential")
+#p.ylim(0,0.25)
+#p.xlim(0,max(ttokC_)+2)
+p.xlim(0,50)
+p.legend(loc="upper right")
+p.title(r"Size histogram of radicalized tokens. $\sum |incident - existential| =$ %.2f)"%(n.abs(h1[0]-h2[0]).sum(),))
 p.show()
+
+
+
