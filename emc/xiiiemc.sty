@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%$$$$$$$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% XEMC.STY
+% XEMC 2005 style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$%%%%%%%%%%%%%%%
+
+\usepackage[small]{caption}
+\usepackage{graphicx,color}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{etoolbox}
+\usepackage{geometry}
+
+\renewcommand\maketitle{\par
+  \begingroup
+    \renewcommand\thefootnote{\fnsymbol{footnote}}%
+    \def\@makefnmark{\hbox to\z@{$\m@th^{\@thefnmark}$\hss}}%
+    \long\def\@makefntext##1{\parindent 1em\noindent
+            \hbox to1.8em{\hss$\m@th^{\@thefnmark}$}##1}%
+    \if@twocolumn
+      \ifnum \col@number=\@ne
+        \@maketitle
+      \else
+        \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \@maketitle
+    \fi
+    \thispagestyle{plain}\@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \let\thanks\relax
+  \let\maketitle\relax\let\@maketitle\relax
+  \gdef\@thanks{}\gdef\@author{}\gdef\@title{}}
+\def\@maketitle{%
+  \newpage
+  \null
+  \vspace{-0.68cm}%-1.495cm
+  \vskip 50mm   %(valor aproximado: parte superior do titulo a 45mm do topo)
+  \begin{center}%
+    {\bfseries \@title} \par
+  \end{center}%
+  \vskip 3.9bp
+  {\noindent \bfseries \@author} \par
+  \vskip 24bp%
+   }
+
+
+\newlength{\seclabelwidth}
+\renewcommand{\@seccntformat}[1]{\settowidth{\seclabelwidth}{\csname the#1\endcsname}%
+             \addtolength{\seclabelwidth}{-0.75cm}%
+             \csname the#1\endcsname\hspace{-\seclabelwidth}}
+
+
+\setcounter{secnumdepth}{2}
+
+\renewcommand\thesection       {\arabic{section}.}
+\renewcommand\thesubsection    {\thesection\arabic{subsection}}
+
+
+\renewcommand\section{\@startsection
+                        {section}%      %nome do cabecalho
+                        {1}%            %nivel de profundidade
+                        {0mm}%          %indentacao do cabecalho incluindo numeracao
+                        {4.7ex plus 1ex minus .2ex}%         %espacamento antes do cabecalho
+                                        % >0 proximo paragrafo tera indentacao
+                                        % <0 suprime indentacao do proximo paragrafo
+                        {2.5ex plus .2ex}%          %indentacao apos cabecalho
+                                        % >0 o texto vira num novo paragrafo
+                                        % <0 o texto vira' na mesma linha
+                        {\reset@font\normalsize\bfseries}%  %estilo
+                      }
+
+\renewcommand\subsection{\@startsection
+                        {subsection}%   %nome do cabecalho
+                        {2}%            %nivel de profundidade
+                        {0mm}%          %indentacao do cabecalho incluindo numeracao
+                        {2.5ex plus 1ex minus .2ex}%         %espacamento antes do cabecalho
+                                        % >0 proximo paragrafo tera indentacao
+                                        % <0 suprime indentacao do proximo paragrafo
+                        {2.4ex plus .2ex}%          %indentacao apos cabecalho
+                                        % >0 o texto vira' num novo paragrafo
+                                        % <0 o texto vira' na mesma linha
+                        {\reset@font\normalsize\bfseries}%  %estilo
+                      }
+
+\renewcommand\subsubsection{\@startsection
+                     {subsubsection}%   %nome do cabecalho
+                     {3}%               %nivel de profundidade
+                     {0mm}%             %indentacao do cabecalho incluindo numeracao
+                     {2.5ex plus 1ex minus .2ex}%            %espacamento antes do cabecalho
+                                        % >0 proximo paragrafo tera indentacao
+                                        % <0 suprime indentacao do proximo paragrafo
+                     {-6bp}%             %indentacao apos cabecalho
+                                        % >0 o texto vira num novo paragrafo
+                                        % <0 o texto vira' na mesma linha
+                     {\reset@font\normalsize\bfseries}%  %estilo
+                     }
+
+
+\renewenvironment{abstract}{%
+    \noindent
+     {\em \bfseries  \abstractname.}%
+      \em }
+      {\endquotation\vskip 12bp}
+
+
+\newenvironment{keywords}{%
+\noindent
+        {\em \bfseries \keywordsname: }%
+         \rm }
+      {\endquotation \vskip 12bp}
+
+
+\newcommand{\keywordsname}{Keywords}
+
+\special{papersize=21cm, 29.7cm}
+\geometry{verbose, a4paper, lmargin = 2.5cm, rmargin = 2.5cm, tmargin = 2.5cm, bmargin = 3.1cm, headsep=1.0cm,} 
+\setlength{\skip\footins}{1cm}
+
+%%%% height = textheight + tmargin + bmargin 
+
+%\setlength\textwidth{160mm}	%% 210mm-160mm = 50mm-> 5cm-> 2.5cm to left and right
+%\setlength\textheight{247mm}
+% \setlength{\oddsidemargin}{-0.4mm}
+% \setlength{\topmargin}{4.8mm}
+% \setlength{\headheight}{29mm} % O quando acima margem x topo
+% \setlength{\headsep}{0mm}     % O quanto abaixo margem x button 
+% \setlength\parindent{0.75cm}
+% \setlength\parskip{0mm}
+% \setlength\mathindent{1cm}
+
+%% Space Before and after: Fig 
+%\BeforeBeginEnvironment{figure}{\vskip-2.5ex}
+%\AfterEndEnvironment{figure}{\vskip-2.5ex}
+
+\pagestyle{empty}
+
+
+\renewcommand\refname{REFERENCES}
+

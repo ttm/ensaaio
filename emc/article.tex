@@ -295,17 +295,33 @@ all most often within new users:
 There are mainly three software pieces written to support AA activity.
 Two of them are a server and client suite each (see Sections~\ref{sec:aaFirst} and~\ref{sec:aa01}).
 The third is a fancy dashboard.
-Among supplementary software support are automated conversational agents (software [ro]bots),
+Among supplementary software support are automated conversational agents (software (ro)bots),
 used as alternative user interfaces (UIs),
 with a highlight for the Lalenia bot (see Section~\ref{sec:lalenia});
 and an initiative to make AA available in all chat networks (see Section~\ref{sec:ubi}).
-All these software is contextualized in Table~\ref{tab:aas}.
+All these software items are contextualized in Table~\ref{tab:aas}.
+
+\begin{table}[H]
+	\scriptsize
+  \caption{All AA versions described and their databases.
+	References marked with ($\dagger$) are not currently used.
+	Further context is given in Sections~\ref{sec:sofsup} and~\ref{sec:data}.}\label{tab:aas}
+\vspace{12pt}
+\centering{}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|p{2cm}|p{2cm}|l|p{2.3cm}|l|}\hline
+      {\bf version name} & {\bf main languages} & {\bf user interface} & {\bf database} & {\bf code repository} & {\bf available at} \\\hline\hline
+First AA ($\dagger$) & PHP, Python, Bash & Linux terminal, HTML & MySQL & \cite{aafc,aafs} & -//- \\\hline
+AA 0.1 & Python & Linux terminal, HTTP & MongoDB & \cite{aa01r} & \cite{aa01c,aa01s} \\\hline
+Lalenia bot & Python & IRC & any & \cite{lalenia} & \cite{lirc} \\\hline
+Ubiquitous AA ($\dagger$) & Python & IRC, Twitter, Google Chat, Facebook, email, MSN & any & \cite{ubi} & -//- \\\hline
+  \end{tabular*}
+\end{table}
 
 \subsection{First AA: HTTP server, HTML skin and shell client}\label{sec:aaFirst}
 Although deprecated in favor of AA 01,
 this first AA software presents the most numerous set of functionalities.
 The client was completely designed for usage within a GNU/Linux terminal,
-and the functionalities are:
+and the main functionalities are:
 \begin{itemize}
     \item Sending messages to the host.
     \item Configuration facilities.
@@ -313,21 +329,21 @@ and the functionalities are:
     \item Timing to ease AA usage, as described in Sessions~\ref{sec:des} and~\ref{sec:usess}.
 \end{itemize}
 
-Server functionalities are:
+\noindent Main server functionalities are:
 \begin{itemize}
     \item Receiving shouts and other AA messages through HTTP.
     \item Registering shouts and other AA messages, received through HTTP, in a MySQL database.
 \end{itemize}
 
-Core HTML interface functionalities are:
+\noindent Core HTML interface functionalities are:
 \begin{itemize}
     \item Exhibiting shouts and sessions to other users by common HTML pages.
     \item Enabling interaction of AA users for reviews and screencast attachments to sessions.
 \end{itemize}
 
-Full description of the features extrapolates information above and article scope,
+A full description of the features extrapolates the information above and the scope of this article,
 as do implementation details.
-Further information of this and other versions of AA are contextualized in Table~\ref{tab:aas}.
+Further information of this and other versions of AA are contextualized in Table~\ref{tab:aas} and~\cite{paaper}.
 
 Throughout Jul/2011-Mar/2014, this first version of AA 
 was used directly or routed from bots (see Section~\ref{sec:lalenia})
@@ -336,22 +352,20 @@ and other gadgets (Section~\ref{sec:ubi}).
 \subsection{AA 0.1}\label{sec:aa01}
 Although there was no online AA software support in the months of April and May, 2014,
 there was AA activity, as seen in~\cite{ensaaio}.
-This motivated a minimum version of AA to support this visceral usage,
-that went beyond the software support.
+This motivated the creation of a minimum version of AA to support this visceral usage.
 This minimum version is AA 0.1~\citep{aa01r}.
 This implementation targeted registering the shout messages independently.
 All other characteristics were left to data mining and tagging performed by the users.
 The minimum client has only one feature:
-a simple HTML call. Integrated trivially as bash commands, to scripts or bots.
+a simple HTML call. Integrated trivially as bash commands by scripts and bots.
 The minimum server has more features:
 \begin{itemize}
-    \item it receives the shout with an associated nick and registers to a MongoDB instance with the time the message arrived.
+    \item it receives the shout with an associated nick and registers it to a MongoDB instance with the time stamp in which the message arrived.
     \item Returns all shouts as a string or as JSON.
     \item It has a Heroku Flask app, integrated to an online MongoDB.
 	    All these are free online services. 
 \end{itemize}
-
-The minimum interface/skin features are part of the server, but listed here for organization:
+\noindent The minimum interface/skin features are part of the server, but listed here for organization:
 \begin{itemize}
     \item Lightest HTML.
     \item Export as JSON.
@@ -367,10 +381,10 @@ Core features are visualization of:
     \item Latest commits to LM main repositories.
 \end{itemize}
 
-This Django (Python)software is written for first AA and has not been adapted to AA 0.1.
+\noindent This Django (Python) software was written for first AA and has not been adapted to AA 0.1.
 
 \subsection{Lalenia interface}\label{sec:lalenia}
-To ease usage of AA, and enhance social aspects, the lalenia IRC bot was used as an AA client.
+To ease and enhance the usage and social aspects of AA, the lalenia IRC bot was used as an AA client.
 This enabled shouts to be logged by IRC users while on the same channel as lalenia.
 Core features are:
 \begin{itemize}
@@ -381,24 +395,26 @@ Core features are:
     \item Both first version and 0.1 have supybot plug-ins (lalenia is a supybot~\citep{supybot}).
 \end{itemize}
 
-\subsubsection{The \#labmacambira@Freenode IRC channel log}\label{sec:cl}
-As stated by lalenia, {\tt on \#labmacambira there have been 172554 messages, containing 6964778 characters, 1066138 words, 4202 smileys, and 10181 frowns; 178 of those messages were ACTIONs.  There have been 31906 joins, 680 parts, 31109 quits, 0 kicks, 4 mode changes, and 133 topic changes}.
 
-Within information in lalenia logs, there were found 1,654 AA shouts that were not in either MySQL or MongoDB databases.
+
+Within information in lalenia logs\footnote{About
+the \#labmacambira@Freenode IRC channel log,
+as stated by lalenia, {\tt on \#labmacambira there have been 172554 messages, containing 6964778 characters, 1066138 words, 4202 smileys, and 10181 frowns; 178 of those messages were ACTIONs.There have been 31906 joins, 680 parts, 31109 quits, 0 kicks, 4 mode changes, and 133 topic\\ changes}.},
+there were found 1,654 AA shouts that were not in either MySQL or MongoDB databases.
 Actually, to ease mining, any shout in channel log whose message is identical to any message in all 114,040 messages from 
 MongoDB or MySQL was discarded.
 Therefore, there was probably a few more shouts in \#labmarambira IRC channel log then what is reported here.
 
 \subsection{Ubiquitous AA}\label{sec:ubi}
-Following the route enabled by AA social network interfaces (see Section~\ref{sec:lalenia}),
-the Ubiquitous AA is the expansion of AA to all social networks and, indeed,
+Following the route enabled by AA social network interfaces (Section~\ref{sec:lalenia} reports an example for IRC),
+the Ubiquitous AA is the expansion of AA to be usable in all social networks and, indeed,
 to any media in which activity can be registered.
 There are two approaches to ubiquitous AA:
 \begin{enumerate}
-    \item A software that connects to many messaging services as a bot.
+    \item a software that connects to many messaging services as a bot.
 	    One implementation connected to all IRC, Twitter, Google Chat, Facebook, email and MSN.
 		This bot usually receives messages and register them as AA shouts,
-		but can have more elaborate communication procedures~\cite{ubi}.
+		but can encompass more elaborate communication procedures~\citep{ubi}.
     \item Tags with which messages are bind to AA activity.
 	    This automatically enables AA usage in all social platforms.
 		Messages can be mined for reports and other community usage.
@@ -409,39 +425,23 @@ it is understood as the receiver part of the Yupana Kernel,
 a mythological entity that receives and spreads all things~\citep{yupana};
 and is also understood as a necessary step to human unification~\citep{wisaa,ciberiun}.
 
-%\addcontentsline{toc}{subsection}{Software support}
-\begin{table}[H]
-	\scriptsize
-  \caption{All AA versions described and their databases.
-	References marked with ($\dagger$) are not currently operational.}\label{tab:aas}
-\vspace{12pt}
-\centering{}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|p{2cm}|p{2cm}|l|p{2.3cm}|l|}\hline
-      {\bf version name} & {\bf main languages} & {\bf user interface} & {\bf database} & {\bf code repository} & {\bf available at} \\\hline\hline
-First AA ($\dagger$) & PHP, Python, Bash & Linux terminal, HTML & MySQL & \cite{aafc,aafs} & -//- \\\hline
-AA 0.1 & python & Linux terminal, HTTP & MongoDB & \cite{aa01r} & \cite{aa01c,aa01s} \\\hline
-Lalenia bot & Python & IRC & any & \cite{lalenia} & \cite{lirc} \\\hline
-Ubiquitous AA ($\dagger$) & Python & IRC, Twitter, Google Chat, Facebook, email, MSN & any & \cite{ubi} & -//- \\\hline
-  \end{tabular*}
-\end{table}
-
-
 \section{Data}\label{sec:data}
 AA data is scattered among different databases and logs (see Section~\ref{sec:sofsup}).
 A coherent integration of these resources is done by means of a dedicated OWL ontology
-and a mapping routine from relational databases to RDF data.
+and a mapping routine from relational and NoSQL databases to RDF data.
 
 \subsection{The OntologiAA OWL ontology}\label{sec:ont}
-An ontology, in linked data contexts, is a formalized of a conceptualization.
+An ontology, in linked data contexts, is a formalized conceptualization.
 The Web Ontology Language (OWL) is a family of languages designed for authoring ontologies.
-Core uses ontologies include: 1) reasoning by means of ontological specifications;
+Core uses of ontologies include: 1) reasoning by means of ontological specifications;
 2) linking data from different sources; and 3) organization of domain knowledge for coherent consideration.
-For further considerations of ontologies in contexts pertinent to AA, the reader should visit~\cite{ops,pnud5}.
+For further ontologies in contexts pertinent to AA, the reader should visit~\cite{ops,pnud5}.
 
 For AA, an ontology facilitates key usage aspects:
 \begin{itemize}
-    \item The conceptualization of AA is not unique or steady or always easy to grasp.
+    \item The conceptualization of AA is not unique or steady nor always easy to grasp.
 	    The OntologiAA delivers a formal paradigm with which the community can communicate and develop.
+		Figure~\ref{fig:ontologiaa} illustrates the conceptualization formalized in OntologiAA.
     \item There is AA related data in different databases,
 	    and even in social networks (see Section~\ref{sec:sofsup}).
 		Standard classes to which relate data is a sound method for integration.
@@ -467,24 +467,24 @@ For AA, an ontology facilitates key usage aspects:
 
 \subsection{RDF data}
 The AA data is currently in relational and NoSQL databases,
-and social networks messages to be mined (Section~\ref{sec:sofsup}).
+and social networks to be mined (Section~\ref{sec:sofsup}).
 By using the same ontological background (see OntologiAA in Section~\ref{sec:ont}),
 this data can be translated to RDF for integration and linkage.
 
-Script at~\cite{participation} outputs RDF from a MySQL database (mostly from first AA version),
-from a MongoDB database (mostly from AA 0.1)
-from IRC logs.
+The scripts at~\cite{participation} output RDF from a MySQL database (mostly from first AA version),
+from a MongoDB database (mostly from AA 0.1),
+and from IRC logs.
 
 \subsection{Linkage to external data}
 The usage of RDF and OWL protocols enables linked data facilities.
-The OntologiAA (and thus all AA data) is integrated in two instances of special interest:
+The OntologiAA (and thus all AA data) is integrated by two means of special interest:
 \begin{itemize}
     \item Through OPS, AA data is linked to OPa, OBS, VBS, and OCD.
-	    These are Brazilian ontologies,
-		with social participation focus,
-		that has been used for data representation and conceptual studies~\citep{pnud5}.
+	    These are ontologies
+		with a social participation focus
+		that have been used for data representation and conceptual studies~\citep{pnud5}.
     \item Through all other ontologies (e.g. FOAC, Dublin Core, Schema.org, SIOC),
-	    AA data is linked to relevant portions of the Giant Global Graph (GGG) of Linked Open Data (LOD)~\citep{LOD,losd}.
+	    AA data is linked to the Giant Global Graph (GGG) of Linked Open Data (LOD)~\citep{LOD,losd}.
 \end{itemize}
 
 This linkage gives meaning to data while facilitating data discovery and comparative analysis,
@@ -492,9 +492,9 @@ to point just a few of the benefits of such approach~\citep{ldb}.
 
 \section{Statistics}\label{sec:stats}
 From all the AA data, many statistics were obtained:
-number of messages by type, of sessions, of users, screescants, sessions checked, scores, etc.
-Activity along time in different scales from seconds to years.
-Most incident words, radicals and number of different sets of tokens.
+number of messages by type, of sessions, of users, screescants, sessions checked, scores, etc.;
+activity along time in different scales from seconds to years;
+most incident words, radicals and sizes of different sets of tokens.
 All these and some other measures are available in~\cite{ensaaio}.
 Most importantly, in the histograms it became clear that even in the months when no
 software were being used to log the shouts, AA kept being used in IRC
@@ -511,82 +511,38 @@ Potential next steps are:
 \begin{itemize}
 	\item implementing mining routines or chat bots to better support the Ubiquitous AA
 		as described in Section~\ref{sec:ubi}.
-	\item Making the data related to AA available in the linked open data cloud~\citep{LOD,losd}.
+	\item Making the data related to AA available in the linked open data cloud~\citep{LOD,losd},
+		e.g. through uploading OntologiAA and data to Data Wold or DataHub.
 	\item Deepening our understandings of related paradigms, such as Pomodoro~\citep{pomodoro}.
 	\item Relating the data analysis in~\cite{ensaaio} to data from other online social platforms.
 \end{itemize}
 
 \subsection*{\textit{Acknowledgements}}
-The author thanks CNPq and FAPESP for the funding received while researching the topic of this article,
+The author thanks CNPq for the funding received while researching the topic of this article,
 the researchers of IFSC/USP and ICMC/USP for the recurrent collaboration in every situation
 where we needed directions for investigation.
+The author also thanks the labMacambira.sf.net members for conceptualizing and using AA
+and developing the software support.
 
 % ------------------------------------------------------------------------
 \begin{thebibliography}{99}
 \fontsize{11}{0}\selectfont
-\bibitem[Wikipedia, 2017]{stso}
-	Transparency (behavior). (2017, March 19). In Wikipedia, The Free Encyclopedia. Retrieved
-		18:22, August 23, 2017
-		, from \url{https://en.wikipedia.org/w/index.php?title=Transparency_(behavior)&oldid=771122692}
-
-\bibitem[McBride, 2003]{stph}
-McBride, C. (2003). Self-transparency and the possibility of deliberative politics. Journal of Political Ideologies, 8(3), 289-310.
-
-\bibitem[Fabbri et al., 2013]{paaper}
-	Fabbri, R., Fabbri, R., Vieira, V., Penalva, D., Shiga, D., Mendonça, M., Negrao, A., Zambianchi, L., \& Thumé, G. (2013). AA: The Algorithmic Autoregulation (Distributed Software Development) Methodology. RESI. From \url{https://arxiv.org/abs/1604.08255}
-
-\bibitem[Kim \& Lee, 2012]{govTr}
-Kim, S., \& Lee, J. (2012). E-participation, transparency, and trust in local government. Public Administration Review, 72(6), 819-828.
-
-\bibitem[Habermas, 2006]{espTr}
- Habermas, J. (2006). Religion in the public sphere. European journal of philosophy, 14(1), 1-25.
-
-\bibitem[Jensen \& Hayes, 2006]{priTr}
-Jensen, H.H., \& Hayes, D.J. (2006, May). Private sector approaches to secure traceability, transparency and quality assurance in food chains. In Int. Agric. Trade Research Consortium Symp., Bonn, Germany.
-
-\bibitem[Das Sarma et al., 2010]{cla1}
-Das Sarma, A., Das Sarma, A., Gollapudi, S., \& Panigrahy, R. (2010, February). Ranking mechanisms in twitter-like forums. In Proceedings of the third ACM international conference on Web search and data mining (pp. 21-30). ACM.
-
-\bibitem[Perkins, 2014]{nov1}
-Perkins, J. (2014). Python 3 Text Processing with NLTK 3 Cookbook. Packt Publishing Ltd.
-
-\bibitem[Costa et al., 2011]{nov2}
-Costa, L. D. F., Oliveira Jr, O. N., Travieso, G., Rodrigues, F. A., Villas Boas, P. R., Antiqueira, L., \& Correa Rocha, L. E. (2011). Analyzing and modeling real-world phenomena with complex networks: a survey of applications. Advances in Physics, 60(3), 329-412.
-
-\bibitem[Wikipédia, 2017]{cleodon}
-	Cleodon Silva. (2017, janeiro 29). Wikipédia, a enciclopédia livre. Retrieved 15:07, janeiro 29, 2017 from \url{https://pt.wikipedia.org/w/index.php?title=Cleodon_Silva&oldid=47863134}
-
-\bibitem[labMacambira.sf.net, 2012]{aaWiki}
-	labMacambira.sf.net. (2012). Wiki page for AA.
-		Wiki Nós Digitais. From \url{http://wiki.nosdigitais.teia.org.br/AA#Tags_Propostas}
-
-\bibitem[labMacambira.sf.net, 2014]{aaREADME}
-	labMacambira.sf.net. (2014). Readme of current AA.
-		Github repositories. From \url{https://github.com/ttm/aa01/blob/master/README.md}
-
-\bibitem[Fabbri, 2015]{ensaaio}
-	Fabbri, R.. (2015). The Algorithmic-Autoregulation essay: a collective and natural focus
-		on self-transparency. Github repositories. From \url{https://github.com/ttm/ensaaio/raw/master/ensaio.pdf}
-
-\bibitem[labMacambira.sf.net, 2014]{aa01r}
-	labMacambira.sf.net. (2014). Core code repository of AA01.
-		Github repositories. From \url{https://github.com/ttm/aa01/}
-
-\bibitem[Nanotube, 2015]{supybot}
-	Nanotube. (2015). Supybot: a powerful ITC bot.
-		Sourceforge repositories. From \url{http://sourceforge.net/projects/supybot/}
-
-\bibitem[labMacambira.sf.net, 2012]{ubi}
-	labMacambira.sf.net. (2012). Ubiquitous AA.
-		Sourceforge repositories. From \url{http://sourceforge.net/p/labmacambira/aa/ci/master/tree/omniscientAA/}
-
 \bibitem[Begalli et al., 2011]{yupana}
 	Begalli, M., Fabbri, R. Soares, G. (2011). After all, who is Yupana Kernel.
 		Mutirão da Gambiarra. From \url{http://mutgamb.org/blog/Afinal-quem-e-Yupana-Kernel}
 
-\bibitem[labMacambira.sf.net, 2012]{wisaa}
-	labMacambira.sf.net. (2012). What is AA (dialog).
-		Sourceforge repositories. From \url{http://sourceforge.net/p/labmacambira/aa/ci/master/tree/aa-what-is-aa}
+\bibitem[Bizer et al., 2011]{LOD}
+	Bizer, C., Jentzsch, A. \& Cyganiak, R. (2011). State of the LOD Cloud. 
+
+\bibitem[Brazilian Presidency, 2012-7]{participa}
+Brazilian Presidency (2012-7). ParticipaBR: a Brazilian federal social participation portal. 
+From \url{www.participa.br}
+
+\bibitem[Costa et al., 2011]{nov2}
+Costa, L. D. F., Oliveira Jr, O. N., Travieso, G., Rodrigues, F. A., Villas Boas, P. R., Antiqueira, L., \& Correa Rocha, L. E. (2011). Analyzing and modeling real-world phenomena with complex networks: a survey of applications. Advances in Physics, 60(3), 329-412.
+
+\bibitem[Das Sarma et al., 2010]{cla1}
+Das Sarma, A., Das Sarma, A., Gollapudi, S., \& Panigrahy, R. (2010, February). Ranking mechanisms in twitter-like forums. In Proceedings of the third ACM international conference on Web search and data mining (pp. 21-30). ACM.
 
 \bibitem[Fabbri, 2013]{ciberiun}
 	Fabbri, R. (2013). Nuvens cognitivas e a unificação da espécie humana.
@@ -594,21 +550,49 @@ Costa, L. D. F., Oliveira Jr, O. N., Travieso, G., Rodrigues, F. A., Villas Boas
 	From \url{http://wiki.nosdigitais.teia.org.br/Cyberiun}
 	and \url{http://cyberiun.tumblr.com/post/64607669758/nuvens-cognitivas}
 
-\bibitem[labMacambira.sf.net, 2012]{aafc}
-	labMacambira.sf.net. (2012). Git repository of first AA's client.
-		Sourceforge repositories. From \url{http://sourceforge.net/p/labmacambira/aa/ci/master/tree/}
+\bibitem[Fabbri et al., 2013]{paaper}
+	Fabbri, R., Fabbri, R., Vieira, V., Penalva, D., Shiga, D., Mendonça, M., Negrao, A., Zambianchi, L., \& Thumé, G. (2013). AA: The Algorithmic Autoregulation (Distributed Software Development) Methodology. RESI. From \url{https://arxiv.org/abs/1604.08255}
+
+\bibitem[Fabbri, 2014]{pnud5}
+Fabbri, R. (2014). Social participation ontologies and rules to fuel a social participation linked data cloud.
+	Technical report for the United Nations Development Program.
+		From \url{https://github.com/ttm/pnud5/raw/master/latex/produto.pdf}
+
+\bibitem[Fabbri, 2015]{ensaaio}
+	Fabbri, R.. (2015). The Algorithmic-Autoregulation essay: a collective and natural focus
+		on self-transparency. Github repositories. From \url{https://github.com/ttm/ensaaio/raw/master/ensaio.pdf}
+
+\bibitem[Fabbri, 2015]{participation}
+	Fabbri, R. (2016). The Participation Python package to translate AA, ParticipaBR and Cidade Democrática data to RDF linked data.
+		Github repositories. From \url{http://github.com/ttm/participation/}
+
+\bibitem[Fabbri et al., 2015]{ops}
+Fabbri, R., de Luna, R. B., Martins, R. A. P., Amanqui, F. K. M., \& Moreira, D. D. A. (2015). Social Participation Ontology: community documentation, enhancements and use examples. arXiv preprint arXiv:1501.02662.
+
+\bibitem[Fabbri \& Oliveira, 2016]{losd}
+	Fabbri, R., \& de Oliveira, O. N. (2016). Linked Open Social Database. Github repositories, from \url{https://github.com/ttm/linkedOpenSocialDatabase/raw/master/paper.pdf}
+
+\bibitem[Gobbo \& Vaccari, 2008]{pomodoro}
+Gobbo, F., \& Vaccari, M. (2008, June). The pomodoro technique for sustainable pace in extreme programming teams. In International Conference on Agile Processes and Extreme Programming in Software Engineering (pp. 180-184). Springer Berlin Heidelberg.
+
+\bibitem[Habermas, 2006]{espTr}
+ Habermas, J. (2006). Religion in the public sphere. European journal of philosophy, 14(1), 1-25.
+
+\bibitem[Heath \& Bizer, 2011]{ldb}
+	Heath, T. \& Bizer, C. (2011). Linked Data: Evolving the Web into a Global Data Space (1st edition). Synthesis Lectures on the Semantic Web: Theory and Technology, 1:1, 1-136. Morgan \& Claypool.
+
+\bibitem[Instituto Seva, 2012-7]{cd}
+Instituto Seva (2012-7). Cidade Democrática: a Brazilian civil society social participation portal. 
+From \url{www.cidadedemocratica.com.br}
+\bibitem[Kim \& Lee, 2012]{govTr}
+Kim, S., \& Lee, J. (2012). E-participation, transparency, and trust in local government. Public Administration Review, 72(6), 819-828.
+
+\bibitem[Jensen \& Hayes, 2006]{priTr}
+Jensen, H.H., \& Hayes, D.J. (2006, May). Private sector approaches to secure traceability, transparency and quality assurance in food chains. In Int. Agric. Trade Research Consortium Symp., Bonn, Germany.
 
 \bibitem[labMacambira.sf.net, 2011]{aafs}
 	labMacambira.sf.net. (2011). Git repository of first AA's server.
 		Gitourious repositories. From \url{https://gitorious.org/macambira_aa/macambira_aa}
-
-\bibitem[labMacambira.sf.net, 2014]{aa01c}
-	labMacambira.sf.net. (2014). Client of AA01.
-		Heroku. From \url{http://aaserver.herokuapp.com/minimumClient/}
-
-\bibitem[labMacambira.sf.net, 2014b]{aa01s}
-	labMacambira.sf.net. (2014). Server of AA01.
-		Heroku. From \url{http://aaserver.herokuapp.com/shout?nick=oNickOuAnonimo&shout=a}
 
 \bibitem[labMacambira.sf.net, 2011]{lalenia}
 	labMacambira.sf.net. (2011). Lalenia IRC bot.
@@ -618,40 +602,55 @@ Costa, L. D. F., Oliveira Jr, O. N., Travieso, G., Rodrigues, F. A., Villas Boas
 	labMacambira.sf.net. (2011-5). \#labmacambira@Freenode IRC channel.
 		Freenode. From \url{http://webchat.freenode.net/?channels=#labmacambira}
 
+\bibitem[labMacambira.sf.net, 2012]{aafc}
+	labMacambira.sf.net. (2012). Git repository of first AA's client.
+		Sourceforge repositories. From \url{http://sourceforge.net/p/labmacambira/aa/ci/master/tree/}
 
-\bibitem[Fabbri, 2015]{participation}
-	Fabbri, R. (2016). The Participation Python package to translate AA, ParticipaBR and Cidade Democrática data to RDF linked data.
-		Github repositories. From \url{http://github.com/ttm/participation/}
+\bibitem[labMacambira.sf.net, 2012]{aaWiki}
+	labMacambira.sf.net. (2012). Wiki page for AA.
+		Wiki Nós Digitais. From \url{http://wiki.nosdigitais.teia.org.br/AA#Tags_Propostas}
 
-\bibitem[Fabbri, 2014]{pnud5}
-Fabbri, R. (2014). Social participation ontologies and rules to fuel a social participation linked data cloud.
-	Technical report for the United Nations Development Program.
-		From \url{https://github.com/ttm/pnud5/raw/master/latex/produto.pdf}
+\bibitem[labMacambira.sf.net, 2012]{ubi}
+	labMacambira.sf.net. (2012). Ubiquitous AA.
+		Sourceforge repositories. From \url{http://sourceforge.net/p/labmacambira/aa/ci/master/tree/omniscientAA/}
 
-\bibitem[Fabbri et al., 2015]{ops}
-Fabbri, R., de Luna, R. B., Martins, R. A. P., Amanqui, F. K. M., \& Moreira, D. D. A. (2015). Social Participation Ontology: community documentation, enhancements and use examples. arXiv preprint arXiv:1501.02662.
+\bibitem[labMacambira.sf.net, 2012]{wisaa}
+	labMacambira.sf.net. (2012). What is AA (dialog).
+		Sourceforge repositories. From \url{http://sourceforge.net/p/labmacambira/aa/ci/master/tree/aa-what-is-aa}
 
-\bibitem[Brazilian Presidency, 2012-7]{participa}
-Brazilian Presidency (2012-7). ParticipaBR: a Brazilian federal social participation portal. 
-From \url{www.participa.br}
+\bibitem[labMacambira.sf.net, 2014]{aa01c}
+	labMacambira.sf.net. (2014). Client of AA01.
+		Heroku. From \url{http://aaserver.herokuapp.com/minimumClient/}
 
-\bibitem[XYZ, 2012-7]{cd}
-XYZ (2012-7). Cidade Democrática: a Brazilian civil society social participation portal. 
-From \url{www.cidadedemocratica.com.br}
+\bibitem[labMacambira.sf.net, 2014]{aa01r}
+	labMacambira.sf.net. (2014). Core code repository of AA01.
+		Github repositories. From \url{https://github.com/ttm/aa01/}
 
-\bibitem[Fabbri \& Oliveira, 2016]{losd}
-	Fabbri, R., \& de Oliveira, O. N. (2016). Linked Open Social Database. Github repositories, from \url{https://github.com/ttm/linkedOpenSocialDatabase/raw/master/paper.pdf}
+\bibitem[labMacambira.sf.net, 2014]{aaREADME}
+	labMacambira.sf.net. (2014). Readme of current AA.
+		Github repositories. From \url{https://github.com/ttm/aa01/blob/master/README.md}
 
-\bibitem[Bizer et al., 2011]{LOD}
-	Bizer, C., Jentzsch, A. \& Cyganiak, R. (2011). State of the LOD Cloud. 
+\bibitem[labMacambira.sf.net, 2014b]{aa01s}
+	labMacambira.sf.net. (2014). Server of AA01.
+		Heroku. From \url{http://aaserver.herokuapp.com/shout?nick=oNickOuAnonimo&shout=a}
 
-\bibitem[Heath \& Bizer, 2011]{ldb}
-	Heath, T. \& Bizer, C. (2011). Linked Data: Evolving the Web into a Global Data Space (1st edition). Synthesis Lectures on the Semantic Web: Theory and Technology, 1:1, 1-136. Morgan \& Claypool.
+\bibitem[McBride, 2003]{stph}
+McBride, C. (2003). Self-transparency and the possibility of deliberative politics. Journal of Political Ideologies, 8(3), 289-310.
 
-\bibitem[YYY ZZZZ, 2011]{pomodoro}
-	Heath, T. \& Bizer, C. (2011). Pomodoro. SOIDU.
+\bibitem[Nanotube, 2015]{supybot}
+	Nanotube. (2015). Supybot: a powerful ITC bot.
+		Sourceforge repositories. From \url{http://sourceforge.net/projects/supybot/}
 
+\bibitem[Perkins, 2014]{nov1}
+Perkins, J. (2014). Python 3 Text Processing with NLTK 3 Cookbook. Packt Publishing Ltd.
+
+\bibitem[Wikipédia, 2017]{cleodon}
+	Cleodon Silva. (2017, janeiro 29). Wikipédia, a enciclopédia livre. Retrieved 15:07, janeiro 29, 2017 from \url{https://pt.wikipedia.org/w/index.php?title=Cleodon_Silva&oldid=47863134}
+
+
+\bibitem[Wikipedia, 2017]{stso}
+	Transparency (behavior). (2017, March 19). In Wikipedia, The Free Encyclopedia. Retrieved
+		18:22, August 23, 2017
+		, from \url{https://en.wikipedia.org/w/index.php?title=Transparency_(behavior)&oldid=771122692}
 \end{thebibliography}
-
-
 \end{document}
